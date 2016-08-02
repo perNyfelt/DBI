@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dbDriver. DBI 0.4-6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">DBI 0.4-6</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Load and unload database drivers</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>dbDriver(drvName, ...)</div>
+<div>dbUnloadDriver(drv, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>drvName</dt>
+      <dd>character name of the driver to instantiate.</dd>
+      <dt>...</dt>
+      <dd>any other arguments are passed to the driver <code>drvName</code>.</dd>
+      <dt>drv</dt>
+      <dd>an object that inherits from <code>DBIDriver</code> as created by
+<code>dbDriver</code>.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+In the case of <code>dbDriver</code>, an driver object whose class extends
+  <code>DBIDriver</code>. This object may be used to create connections to the
+  actual DBMS engine.</p>
+  
+      <p>In the case of <code>dbUnloadDriver</code>, a logical indicating whether the
+  operation succeeded or not.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>dbDriver</code> is a helper method used to create an new driver object
+given the name of a database or the corresponding R package. It works
+through convention: all DBI-extending packages should provide an exported
+object with the same name as the package. <code>dbDriver</code> just looks for
+this object in the right places: if you know what database you are connecting
+to, you should call the function directly.</p>
+  
+    </div>
+
+    <div class="Side Effects">
+      <h2>Side Effects</h2>
+
+      <p></p>
+  
+      <p>The client part of the database communication is
+initialized (typically dynamically loading C code, etc.) but note that
+connecting to the database engine itself needs to be done through calls to
+<code>dbConnect</code>.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'># Create a RSQLite driver with a string
+d &lt;- dbDriver(&quot;SQLite&quot;)
+d
+</div>
+<div class='output'>&lt;SQLiteDriver&gt;
+</div>
+<div class='input'>
+# But better, access the object directly
+RSQLite::SQLite()
+</div>
+<div class='output'>&lt;SQLiteDriver&gt;
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dbDriver</li><li>dbUnloadDriver</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>sqlAppendTable. DBI 0.4-6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">DBI 0.4-6</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Insert rows into a table</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>sqlAppendTable(con, table, values, row.names&nbsp;=&nbsp;NA, ...)</div>
+<div>sqlAppendTableTemplate(con, table, values, row.names&nbsp;=&nbsp;NA, prefix&nbsp;=&nbsp;"?", ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>con</dt>
+      <dd>A database connection.</dd>
+      <dt>table</dt>
+      <dd>Name of the table. Escaped with
+<code><a href='SQL.html'>dbQuoteIdentifier</a></code>.</dd>
+      <dt>values</dt>
+      <dd>A data frame. Factors will be converted to character vectors.
+Character vectors will be escaped with <code><a href='SQL.html'>dbQuoteString</a></code>.</dd>
+      <dt>row.names</dt>
+      <dd>Either <code>TRUE</code>, <code>FALSE</code>, <code>NA</code> or a string.
+
+  If <code>TRUE</code>, always translate row names to a column called "row_names".
+  If <code>FALSE</code>, never translate row names. If <code>NA</code>, translate
+  rownames only if they're a character vector.
+
+  A string is equivalent to <code>TRUE</code>, but allows you to override the
+  default name.
+
+  For backward compatibility, <code>NULL</code> is equivalent to <code>FALSE</code>.</dd>
+      <dt>...</dt>
+      <dd>Other arguments used by individual methods.</dd>
+      <dt>prefix</dt>
+      <dd>Parameter prefix to put in front of column id.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>sqlAppendTable</code> generates a single SQL string that inserts a
+data frame into an existing table. <code>sqlAppendTableTemplate</code> generates
+a template suitable for use with <code><a href='dbBind.html'>dbBind</a></code>.
+These methods are mostly useful for backend implementers.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>sqlAppendTable(ANSI(), &quot;iris&quot;, head(iris))
+</div>
+<div class='output'>&lt;SQL&gt; INSERT INTO &quot;iris&quot;
+  (&quot;Sepal.Length&quot;, &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;, &quot;Species&quot;)
+VALUES
+  (5.1, 3.5, 1.4, 0.2, &#39;setosa&#39;),
+  (4.9, 3, 1.4, 0.2, &#39;setosa&#39;),
+  (4.7, 3.2, 1.3, 0.2, &#39;setosa&#39;),
+  (4.6, 3.1, 1.5, 0.2, &#39;setosa&#39;),
+  (5, 3.6, 1.4, 0.2, &#39;setosa&#39;),
+  (5.4, 3.9, 1.7, 0.4, &#39;setosa&#39;)
+</div>
+<div class='input'>
+sqlAppendTable(ANSI(), &quot;mtcars&quot;, head(mtcars))
+</div>
+<div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
+  (&quot;row_names&quot;, &quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
+VALUES
+  (&#39;Mazda RX4&#39;, 21, 6, 160, 110, 3.9, 2.62, 16.46, 0, 1, 4, 4),
+  (&#39;Mazda RX4 Wag&#39;, 21, 6, 160, 110, 3.9, 2.875, 17.02, 0, 1, 4, 4),
+  (&#39;Datsun 710&#39;, 22.8, 4, 108, 93, 3.85, 2.32, 18.61, 1, 1, 4, 1),
+  (&#39;Hornet 4 Drive&#39;, 21.4, 6, 258, 110, 3.08, 3.215, 19.44, 1, 0, 3, 1),
+  (&#39;Hornet Sportabout&#39;, 18.7, 8, 360, 175, 3.15, 3.44, 17.02, 0, 0, 3, 2),
+  (&#39;Valiant&#39;, 18.1, 6, 225, 105, 2.76, 3.46, 20.22, 1, 0, 3, 1)
+</div>
+<div class='input'>sqlAppendTable(ANSI(), &quot;mtcars&quot;, head(mtcars), row.names = FALSE)
+</div>
+<div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
+  (&quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
+VALUES
+  (21, 6, 160, 110, 3.9, 2.62, 16.46, 0, 1, 4, 4),
+  (21, 6, 160, 110, 3.9, 2.875, 17.02, 0, 1, 4, 4),
+  (22.8, 4, 108, 93, 3.85, 2.32, 18.61, 1, 1, 4, 1),
+  (21.4, 6, 258, 110, 3.08, 3.215, 19.44, 1, 0, 3, 1),
+  (18.7, 8, 360, 175, 3.15, 3.44, 17.02, 0, 0, 3, 2),
+  (18.1, 6, 225, 105, 2.76, 3.46, 20.22, 1, 0, 3, 1)
+</div>
+<div class='input'>sqlAppendTableTemplate(ANSI(), &quot;iris&quot;, iris)
+</div>
+<div class='output'>&lt;SQL&gt; INSERT INTO &quot;iris&quot;
+  (&quot;Sepal.Length&quot;, &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;, &quot;Species&quot;)
+VALUES
+  (?1, ?2, ?3, ?4, ?5)
+</div>
+<div class='input'>
+sqlAppendTableTemplate(ANSI(), &quot;mtcars&quot;, mtcars)
+</div>
+<div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
+  (&quot;row_names&quot;, &quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
+VALUES
+  (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)
+</div>
+<div class='input'>sqlAppendTableTemplate(ANSI(), &quot;mtcars&quot;, mtcars, row.names = FALSE)
+</div>
+<div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
+  (&quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
+VALUES
+  (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>sqlAppendTable</li><li>sqlAppendTableTemplate</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

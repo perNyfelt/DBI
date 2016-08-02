@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dbExecute. DBI 0.4-6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">DBI 0.4-6</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Execute an SQL statement that does not produce a result set</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>dbExecute(conn, statement, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>conn</dt>
+      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as produced by
+<code><a href='dbConnect.html'>dbConnect</a></code>.</dd>
+      <dt>statement</dt>
+      <dd>a character vector of length 1 containing SQL.</dd>
+      <dt>...</dt>
+      <dd>Other parameters passed on to methods.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+The number of rows affected by the <code>statement</code>
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>This function should be used when you want to execute a
+non-<code>SELECT</code> query on table (ex: <code>UPDATE</code>, <code>DELETE</code>,
+<code>INSERT INTO</code>, <code>DROP TABLE</code>, ...). It will execute
+the query and return the number of rows affected by the operation.
+The default implementation calls <code><a href='dbSendQuery.html'>dbSendQuery</a></code> and
+<code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code>, which is useful if a backend does not
+distinguish between <code>SELECT</code> and non-<code>SELECT</code> queries.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+
+dbWriteTable(con, &quot;cars&quot;, head(cars, 3))
+</div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'>dbReadTable(con, &quot;cars&quot;)   # there are 3 rows
+</div>
+<div class='output'>  speed dist
+1     4    2
+2     4   10
+3     7    4
+</div>
+<div class='input'>dbExecute(con, &quot;INSERT INTO cars (speed, dist)
+                VALUES (1, 1), (2, 2), (3, 3);&quot;)
+</div>
+<div class='output'>[1] 3
+</div>
+<div class='input'>dbReadTable(con, &quot;cars&quot;)   # there are now 6 rows
+</div>
+<div class='output'>  speed dist
+1     4    2
+2     4   10
+3     7    4
+4     1    1
+5     2    2
+6     3    3
+</div>
+<div class='input'>
+dbDisconnect(con)
+</div>
+<div class='output'>[1] TRUE
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dbExecute</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Other connection methods: <code><a href='dbDisconnect.html'>dbDisconnect</a></code>,
+  <code><a href='dbExistsTable.html'>dbExistsTable</a></code>,
+  <code><a href='dbGetException.html'>dbGetException</a></code>, <code><a href='dbGetQuery.html'>dbGetQuery</a></code>,
+  <code><a href='dbListFields.html'>dbListFields</a></code>, <code><a href='dbListResults.html'>dbListResults</a></code>,
+  <code><a href='dbListTables.html'>dbListTables</a></code>, <code><a href='dbReadTable.html'>dbReadTable</a></code>,
+  <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code>, <code><a href='dbSendQuery.html'>dbSendQuery</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dbBind. DBI 0.4-6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">DBI 0.4-6</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Bind values to a parameterised/prepared statement</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>dbBind(res, params, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>res</dt>
+      <dd>An object inheriting from <code><a href='DBIResult-class.html'>DBIResult</a></code>.</dd>
+      <dt>params</dt>
+      <dd>A list of bindings</dd>
+      <dt>...</dt>
+      <dd>Other arguments passed on to methods.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>The <code><a href='dbSendQuery.html'>dbSendQuery</a></code> function can be called with queries
+that contain placeholders for values. This function binds these placeholders
+to actual values, and is intended to be called on the result of
+<code><a href='dbSendQuery.html'>dbSendQuery</a></code> before calling <code><a href='dbFetch.html'>dbFetch</a></code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Parametrised or prepared statements are executed as follows:</p>
+  
+      <p><ol>
+<li> Call <code><a href='dbSendQuery.html'>dbSendQuery</a></code> with a query that contains placeholders,
+    store the returned <code><a href='DBIResult-class.html'>DBIResult</a></code> object in a variable.
+    Currently, the syntax for the placeholders is backend-specific,
+    e.g., <code>?</code>, <code>$</code>, <code>$name</code> and <code>:name</code>.
+    Mixing placeholders (in particular, named and unnamed ones) is not
+    recommended.
+  </li>
+<li> Call <code><a href='dbBind.html'>dbBind</a></code> on the <code>DBIResult</code> object with a list
+    that specifies actual values for the placeholders.  The list must be
+    named or unnamed, depending on the kind of placeholders used.
+    Named values are matched to named paramters, unnamed values
+    are matched by position.
+  </li>
+<li> Call <code><a href='dbFetch.html'>dbFetch</a></code> on the same <code>DBIResult</code> object.
+  </li>
+<li> Repeat 2. and 3. as necessary.
+  </li>
+<li> Close the result set via <code><a href='dbClearResult.html'>dbClearResult</a></code>.
+</li>
+</ol></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+</div>
+<strong class='warning'>Warning message:
+replacing previous import ‘DBI::coerce’ by ‘methods::coerce’ when loading ‘RSQLite’</strong>
+<div class='input'>
+dbWriteTable(con, &quot;iris&quot;, iris)
+</div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'>iris_result &lt;- dbSendQuery(con, &quot;SELECT * FROM iris WHERE [Petal.Width] &gt; ?&quot;)
+dbBind(iris_result, list(2.3))
+dbFetch(iris_result)
+</div>
+<div class='output'>  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1          6.3         3.3          6.0         2.5 virginica
+2          7.2         3.6          6.1         2.5 virginica
+3          5.8         2.8          5.1         2.4 virginica
+4          6.3         3.4          5.6         2.4 virginica
+5          6.7         3.1          5.6         2.4 virginica
+6          6.7         3.3          5.7         2.5 virginica
+</div>
+<div class='input'>dbBind(iris_result, list(3))
+dbFetch(iris_result)
+</div>
+<div class='output'>[1] Sepal.Length Sepal.Width  Petal.Length Petal.Width  Species     
+&lt;0 rows&gt; (or 0-length row.names)
+</div>
+<div class='input'>
+dbClearResult(iris_result)
+</div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'>dbDisconnect(con)
+</div>
+<div class='output'>[1] TRUE
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dbBind</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

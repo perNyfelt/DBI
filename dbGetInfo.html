@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dbGetInfo. DBI 0.4-6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">DBI 0.4-6</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get DBMS metadata</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>dbGetInfo(dbObj, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>dbObj</dt>
+      <dd>An object inheriting from <code><a href='DBIObject-class.html'>DBIObject</a></code>,
+i.e. <code><a href='DBIDriver-class.html'>DBIDriver</a></code>, <code><a href='DBIConnection-class.html'>DBIConnection</a></code>,
+or a <code><a href='DBIResult-class.html'>DBIResult</a></code></dd>
+      <dt>...</dt>
+      <dd>Other arguments to methods.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+a named list
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Get DBMS metadata</p>
+  
+    </div>
+
+    <div class="Implementation notes">
+      <h2>Implementation notes</h2>
+
+      <p></p>
+  
+      <p>For <code>DBIDriver</code> subclasses, this should include the version of the
+package (<code>driver.version</code>), the version of the underlying client
+library (<code>client.version</code>), and the maximum number of connections
+(<code>max.connections</code>).</p>
+  
+      <p>For <code>DBIConnection</code> objects this should report the version of
+the DBMS engine (<code>db.version</code>), database name (<code>dbname</code>),
+username, (<code>username</code>), host (<code>host</code>), port (<code>port</code>), etc.
+It MAY also include any other arguments related to the connection
+(e.g., thread id, socket or TCP connection type). It MUST NOT include the
+password.</p>
+  
+      <p>For <code>DBIResult</code> objects, this should include the statement
+being executed (<code>statement</code>), how many rows have been fetched so far
+(in the case of queries, <code>row.count</code>), how many rows were affected
+(deleted, inserted, changed,
+(<code>rows.affected</code>), and if the query is complete (<code>has.completed</code>).</p>
+  
+      <p>The default implementation for <code>DBIResult objects</code>
+constructs such a list from the return values of the corresponding methods,
+<code><a href='dbGetStatement.html'>dbGetStatement</a></code>, <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
+<code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code>, and <code><a href='dbHasCompleted.html'>dbHasCompleted</a></code>.</p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dbGetInfo</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Other DBObject methods: <code><a href='dbIsValid.html'>dbIsValid</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
