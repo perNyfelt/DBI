@@ -92,8 +92,9 @@ field (field name, type, etc.)</p>
 rs &lt;- dbSendQuery(con, &quot;SELECT 1 AS a, 2 AS b&quot;)
 dbColumnInfo(rs)
 </div>
-<div class='output'>[1] name   Sclass type   len   
-&lt;0 rows&gt; (or 0-length row.names)
+<div class='output'>  name    type
+1    a integer
+2    b integer
 </div>
 <div class='input'>dbFetch(rs)
 </div>
