@@ -97,7 +97,7 @@ The <code>SQL</code> class has associated the <code>SQL()</code> constructor fun
 
       <p></p>
   
-      <p>DBI provides default methods for SQL-92 compatible quoting. If the database
+      <p>DBI provides default generics for SQL-92 compatible quoting. If the database
 uses a different convention, you will need to provide your own methods.
 Note that because of the way that S4 dispatch finds methods and because
 SQL inherits from character, if you implement (e.g.) a method for
@@ -158,6 +158,24 @@ dbQuoteString(ANSI(), dbQuoteString(ANSI(), name))
       
     </ul> -->
       
+    <h2>See also</h2>
+    
+Other DBIResult generics: <code><a href='DBIResult-class.html'>DBIResult-class</a></code>,
+  <code><a href='dbBind.html'>dbBind</a></code>, <code><a href='dbClearResult.html'>dbClearResult</a></code>,
+  <code><a href='dbColumnInfo.html'>dbColumnInfo</a></code>, <code><a href='dbFetch.html'>dbFetch</a></code>,
+  <code><a href='dbGetInfo.html'>dbGetInfo</a></code>, <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
+  <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code>,
+  <code><a href='dbGetStatement.html'>dbGetStatement</a></code>,
+  <code><a href='dbHasCompleted.html'>dbHasCompleted</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>
+
+Other DBIResult generics: <code><a href='DBIResult-class.html'>DBIResult-class</a></code>,
+  <code><a href='dbBind.html'>dbBind</a></code>, <code><a href='dbClearResult.html'>dbClearResult</a></code>,
+  <code><a href='dbColumnInfo.html'>dbColumnInfo</a></code>, <code><a href='dbFetch.html'>dbFetch</a></code>,
+  <code><a href='dbGetInfo.html'>dbGetInfo</a></code>, <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
+  <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code>,
+  <code><a href='dbGetStatement.html'>dbGetStatement</a></code>,
+  <code><a href='dbHasCompleted.html'>dbHasCompleted</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>
+
         
   </div>
 </div>

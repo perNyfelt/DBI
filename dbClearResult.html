@@ -84,7 +84,10 @@ exhausting resources (memory, file descriptors, etc.)</p>
     
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
-
+</div>
+<strong class='warning'>Warning message:
+replacing previous import ‘DBI::coerce’ by ‘methods::coerce’ when loading ‘RSQLite’</strong>
+<div class='input'>
 rs &lt;- dbSendQuery(con, &quot;SELECT 1&quot;)
 print(dbFetch(rs))
 </div>
@@ -111,11 +114,13 @@ dbClearResult(rs)
       
     <h2>See also</h2>
     
-Other DBIResult generics: <code><a href='dbColumnInfo.html'>dbColumnInfo</a></code>,
-  <code><a href='dbFetch.html'>dbFetch</a></code>, <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
+Other DBIResult generics: <code><a href='DBIResult-class.html'>DBIResult-class</a></code>,
+  <code><a href='SQL.html'>SQL</a></code>, <code><a href='dbBind.html'>dbBind</a></code>,
+  <code><a href='dbColumnInfo.html'>dbColumnInfo</a></code>, <code><a href='dbFetch.html'>dbFetch</a></code>,
+  <code><a href='dbGetInfo.html'>dbGetInfo</a></code>, <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
   <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code>,
   <code><a href='dbGetStatement.html'>dbGetStatement</a></code>,
-  <code><a href='dbHasCompleted.html'>dbHasCompleted</a></code>
+  <code><a href='dbHasCompleted.html'>dbHasCompleted</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>
 
         
   </div>
