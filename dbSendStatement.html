@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dbDisconnect. DBI 0.4-9</title>
+<title>dbSendStatement. DBI 0.4-9</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -48,18 +48,20 @@
         
       </header>
       
-      <h1>Disconnect (close) a connection</h1>
+      <h1>Execute a data manipulation statement on a given database connection</h1>
 
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>dbDisconnect(conn, ...)</div></pre>
+    <pre><div>dbSendStatement(conn, statement, ...)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
       <dt>conn</dt>
       <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as produced by
 <code><a href='dbConnect.html'>dbConnect</a></code>.</dd>
+      <dt>statement</dt>
+      <dd>a character vector of length 1 containing SQL.</dd>
       <dt>...</dt>
       <dd>Other parameters passed on to methods.</dd>
     </dl>
@@ -68,7 +70,9 @@
       <h2>Value</h2>
 
       <p><dl>
-a logical vector of length 1, indicating success or failure.
+An object that inherits from <code><a href='DBIResult-class.html'>DBIResult</a></code>.
+  Once you have finished using a result, make sure to disconnect it
+  with <code><a href='dbClearResult.html'>dbClearResult</a></code>.
 </dl></p>
   
     </div>
@@ -76,13 +80,57 @@ a logical vector of length 1, indicating success or failure.
     <div class="Description">
       <h2>Description</h2>
 
-      <p>This closes the connection, discards all pending work, and frees
-resources (e.g., memory, sockets).</p>
+      <p>The function <code>dbSendStatement</code> only submits and synchronously executes the
+SQL data manipulation statement (e.g., <code>UPDATE</code>, <code>DELETE</code>,
+<code>INSERT INTO</code>, <code>DROP TABLE</code>, ...) to the database engine.  To query
+the number of affected rows, call <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code> on the
+returned result object.  You must also call <code><a href='dbClearResult.html'>dbClearResult</a></code> after
+that. For interactive use, you should almost always prefer
+<code><a href='dbExecute.html'>dbExecute</a></code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p><code><a href='dbSendStatement.html'>dbSendStatement</a></code> comes with a default implementation that simply
+forwards to <code><a href='dbSendQuery.html'>dbSendQuery</a></code>, to support backends that only
+implement the latter.</p>
   
     </div>
     
     <h2 id="examples">Examples</h2>
     <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+
+dbWriteTable(con, &quot;cars&quot;, head(cars, 3))
+</div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'>rs &lt;- dbSendStatement(con,
+  &quot;INSERT INTO cars (speed, dist) VALUES (1, 1), (2, 2), (3, 3);&quot;)
+dbHasCompleted(rs)
+</div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'>dbGetRowsAffected(rs)
+</div>
+<div class='output'>[1] 3
+</div>
+<div class='input'>dbClearResult(rs)
+</div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'>dbReadTable(con, &quot;cars&quot;)   # there are now 6 rows
+</div>
+<div class='output'>  speed dist
+1     4    2
+2     4   10
+3     7    4
+4     1    1
+5     2    2
+6     3    3
+</div>
+<div class='input'>
 dbDisconnect(con)
 </div>
 <div class='output'>[1] TRUE
@@ -90,22 +138,23 @@ dbDisconnect(con)
   </div>
   <div class="span4">
     <!-- <ul>
-      <li>dbDisconnect</li>
+      <li>dbSendStatement</li>
     </ul>
     <ul>
       
     </ul> -->
       
     <h2>See also</h2>
+      <p>For queries: <code><a href='dbSendQuery.html'>dbSendQuery</a></code> and <code><a href='dbGetQuery.html'>dbGetQuery</a></code>.</p>
+
       <p>Other DBIConnection generics: <code><a href='DBIConnection-class.html'>DBIConnection-class</a></code>,
-  <code><a href='dbDataType.html'>dbDataType</a></code>, <code><a href='dbExecute.html'>dbExecute</a></code>,
-  <code><a href='dbExistsTable.html'>dbExistsTable</a></code>,
+  <code><a href='dbDataType.html'>dbDataType</a></code>, <code><a href='dbDisconnect.html'>dbDisconnect</a></code>,
+  <code><a href='dbExecute.html'>dbExecute</a></code>, <code><a href='dbExistsTable.html'>dbExistsTable</a></code>,
   <code><a href='dbGetException.html'>dbGetException</a></code>, <code><a href='dbGetInfo.html'>dbGetInfo</a></code>,
   <code><a href='dbGetQuery.html'>dbGetQuery</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
   <code><a href='dbListFields.html'>dbListFields</a></code>, <code><a href='dbListResults.html'>dbListResults</a></code>,
   <code><a href='dbListTables.html'>dbListTables</a></code>, <code><a href='dbReadTable.html'>dbReadTable</a></code>,
-  <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code>, <code><a href='dbSendQuery.html'>dbSendQuery</a></code>,
-  <code><a href='dbSendStatement.html'>dbSendStatement</a></code></p>
+  <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code>, <code><a href='dbSendQuery.html'>dbSendQuery</a></code></p>
 
     
 

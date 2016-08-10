@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dbDriver,character-method. DBI 0.4-8</title>
+<title>dbDriver,character-method. DBI 0.4-9</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.4-8</a>
+      <a class="brand" href="#">DBI 0.4-9</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -57,8 +57,9 @@
 <div>"show"(object)</div>
 <div>"dbDataType"(dbObj, obj, ...)</div>
 <div>"show"(object)</div>
-<div>"dbExecute"(conn, statement, ...)</div>
+<div>"dbSendStatement"(conn, statement, ...)</div>
 <div>"dbGetQuery"(conn, statement, ...)</div>
+<div>"dbExecute"(conn, statement, ...)</div>
 <div>"show"(object)</div>
 <div>"show"(object)</div>
 <div>"dbFetch"(res, n&nbsp;=&nbsp;-1, ...)</div>
@@ -104,7 +105,7 @@
       </div>
   <div class="span4">
     <!-- <ul>
-      <li>SQLKeywords,DBIObject-method</li><li>SQLKeywords,missing-method</li><li>dbDataType,DBIObject-method</li><li>dbDriver,character-method</li><li>dbExecute,DBIConnection,character-method</li><li>dbFetch,DBIResult-method</li><li>dbGetInfo,DBIResult-method</li><li>dbGetQuery,DBIConnection,character-method</li><li>dbQuoteIdentifier,DBIConnection,SQL-method</li><li>dbQuoteIdentifier,DBIConnection,Table-method</li><li>dbQuoteIdentifier,DBIConnection,character-method</li><li>dbQuoteString,DBIConnection,SQL-method</li><li>dbQuoteString,DBIConnection,character-method</li><li>dbWithTransaction,DBIConnection-method</li><li>hidden_aliases</li><li>isSQLKeyword,DBIObject,character-method</li><li>make.db.names,DBIObject,character-method</li><li>show,AnsiConnection-method</li><li>show,DBIConnection-method</li><li>show,DBIDriver-method</li><li>show,DBIResult-method</li><li>show,SQL-method</li><li>show,Table-method</li><li>sqlAppendTable,DBIConnection-method</li><li>sqlCreateTable,DBIConnection-method</li><li>sqlData,DBIConnection-method</li><li>sqlInterpolate,DBIConnection-method</li><li>sqlParseVariables,DBIConnection-method</li>
+      <li>SQLKeywords,DBIObject-method</li><li>SQLKeywords,missing-method</li><li>dbDataType,DBIObject-method</li><li>dbDriver,character-method</li><li>dbExecute,DBIConnection,character-method</li><li>dbFetch,DBIResult-method</li><li>dbGetInfo,DBIResult-method</li><li>dbGetQuery,DBIConnection,character-method</li><li>dbQuoteIdentifier,DBIConnection,SQL-method</li><li>dbQuoteIdentifier,DBIConnection,Table-method</li><li>dbQuoteIdentifier,DBIConnection,character-method</li><li>dbQuoteString,DBIConnection,SQL-method</li><li>dbQuoteString,DBIConnection,character-method</li><li>dbSendStatement,DBIConnection,character-method</li><li>dbWithTransaction,DBIConnection-method</li><li>hidden_aliases</li><li>isSQLKeyword,DBIObject,character-method</li><li>make.db.names,DBIObject,character-method</li><li>show,AnsiConnection-method</li><li>show,DBIConnection-method</li><li>show,DBIDriver-method</li><li>show,DBIResult-method</li><li>show,SQL-method</li><li>show,Table-method</li><li>sqlAppendTable,DBIConnection-method</li><li>sqlCreateTable,DBIConnection-method</li><li>sqlData,DBIConnection-method</li><li>sqlInterpolate,DBIConnection-method</li><li>sqlParseVariables,DBIConnection-method</li>
     </ul>
     <ul>
       <li>internal</li>

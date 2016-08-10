@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dbSendQuery. DBI 0.4-8</title>
+<title>dbSendQuery. DBI 0.4-9</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.4-8</a>
+      <a class="brand" href="#">DBI 0.4-9</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -48,7 +48,7 @@
         
       </header>
       
-      <h1>Execute a statement on a given database connection</h1>
+      <h1>Execute a query on a given database connection</h1>
 
 <div class="row">
   <div class="span8">
@@ -71,10 +71,8 @@
 
       <p><dl>
 An object that inherits from <code><a href='DBIResult-class.html'>DBIResult</a></code>.
-  If the statement generates output (e.g., a <code>SELECT</code> statement) the
-  result set can be used with <code><a href='dbFetch.html'>dbFetch</a></code> to extract records.</p>
-  
-      <p>Once you have finished using a result, make sure to disconnect it
+  The result set can be used with <code><a href='dbFetch.html'>dbFetch</a></code> to extract records.
+  Once you have finished using a result, make sure to disconnect it
   with <code><a href='dbClearResult.html'>dbClearResult</a></code>.
 </dl></p>
   
@@ -84,11 +82,21 @@ An object that inherits from <code><a href='DBIResult-class.html'>DBIResult</a><
       <h2>Description</h2>
 
       <p>The function <code>dbSendQuery</code> only submits and synchronously executes the
-SQL statement to the database engine.  It does <em>not</em> extract any
+SQL query to the database engine.  It does <em>not</em> extract any
 records --- for that you need to use the function <code><a href='dbFetch.html'>dbFetch</a></code>, and
 then you must call <code><a href='dbClearResult.html'>dbClearResult</a></code> when you finish fetching the
 records you need. For interactive use, you should almost always prefer
 <code><a href='dbGetQuery.html'>dbGetQuery</a></code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>This function is for <code>SELECT</code> queries only.  Some backends may
+support data manipulation queries through this function for compatibility
+reasons.  However, callers are strongly advised to use
+<code><a href='dbSendStatement.html'>dbSendStatement</a></code> for data manipulation statements.</p>
   
     </div>
 
@@ -97,12 +105,12 @@ records you need. For interactive use, you should almost always prefer
 
       <p></p>
   
-      <p>The statement is submitted to the database server and the DBMS executes the
-statement, possibly generating vast amounts of data. Where these data live
+      <p>The query is submitted to the database server and the DBMS executes it,
+possibly generating vast amounts of data. Where these data live
 is driver-specific: some drivers may choose to leave the output on the server
 and transfer them piecemeal to R, others may transfer all the data to the
 client -- but not necessarily to the memory that R manages. See individual
-drivers <code>dbSendQuery</code> documentation for details.</p>
+drivers' <code>dbSendQuery</code> documentation for details.</p>
   
     </div>
     
@@ -148,6 +156,8 @@ dbDisconnect(con)
     </ul> -->
       
     <h2>See also</h2>
+      <p>For updates: <code><a href='dbSendStatement.html'>dbSendStatement</a></code> and <code><a href='dbExecute.html'>dbExecute</a></code>.</p>
+
       <p>Other DBIConnection generics: <code><a href='DBIConnection-class.html'>DBIConnection-class</a></code>,
   <code><a href='dbDataType.html'>dbDataType</a></code>, <code><a href='dbDisconnect.html'>dbDisconnect</a></code>,
   <code><a href='dbExecute.html'>dbExecute</a></code>, <code><a href='dbExistsTable.html'>dbExistsTable</a></code>,
@@ -155,7 +165,8 @@ dbDisconnect(con)
   <code><a href='dbGetQuery.html'>dbGetQuery</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
   <code><a href='dbListFields.html'>dbListFields</a></code>, <code><a href='dbListResults.html'>dbListResults</a></code>,
   <code><a href='dbListTables.html'>dbListTables</a></code>, <code><a href='dbReadTable.html'>dbReadTable</a></code>,
-  <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code></p>
+  <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code>,
+  <code><a href='dbSendStatement.html'>dbSendStatement</a></code></p>
 
     
 

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dbGetQuery. DBI 0.4-8</title>
+<title>dbGetQuery. DBI 0.4-9</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.4-8</a>
+      <a class="brand" href="#">DBI 0.4-9</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -72,6 +72,16 @@
       <p><code>dbGetQuery</code> comes with a default implementation that calls
 <code><a href='dbSendQuery.html'>dbSendQuery</a></code>, then <code><a href='dbFetch.html'>dbFetch</a></code>, ensuring that
 the result is always free-d by <code><a href='dbClearResult.html'>dbClearResult</a></code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>This function is for <code>SELECT</code> queries only.  Some backends may
+support data manipulation statements through this function for compatibility
+reasons.  However callers are strongly advised to use
+<code><a href='dbExecute.html'>dbExecute</a></code> for data manipulation statements.</p>
   
     </div>
 
@@ -143,6 +153,8 @@ dbDisconnect(con)
     </ul> -->
       
     <h2>See also</h2>
+      <p>For updates: <code><a href='dbSendStatement.html'>dbSendStatement</a></code> and <code><a href='dbExecute.html'>dbExecute</a></code>.</p>
+
       <p>Other DBIConnection generics: <code><a href='DBIConnection-class.html'>DBIConnection-class</a></code>,
   <code><a href='dbDataType.html'>dbDataType</a></code>, <code><a href='dbDisconnect.html'>dbDisconnect</a></code>,
   <code><a href='dbExecute.html'>dbExecute</a></code>, <code><a href='dbExistsTable.html'>dbExistsTable</a></code>,
@@ -150,7 +162,7 @@ dbDisconnect(con)
   <code><a href='dbIsValid.html'>dbIsValid</a></code>, <code><a href='dbListFields.html'>dbListFields</a></code>,
   <code><a href='dbListResults.html'>dbListResults</a></code>, <code><a href='dbListTables.html'>dbListTables</a></code>,
   <code><a href='dbReadTable.html'>dbReadTable</a></code>, <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code>,
-  <code><a href='dbSendQuery.html'>dbSendQuery</a></code></p>
+  <code><a href='dbSendQuery.html'>dbSendQuery</a></code>, <code><a href='dbSendStatement.html'>dbSendStatement</a></code></p>
 
     
 

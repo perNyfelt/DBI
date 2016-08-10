@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Index. DBI 0.4-8</title>
+<title>Index. DBI 0.4-9</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.4-8</a>
+      <a class="brand" href="#">DBI 0.4-9</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -166,7 +166,7 @@ Typically generator functions instantiate the driver objects like <code>RSQLite(
         <code><a href="dbDriver.html">dbDriver</a></code>(dbUnloadDriver)<br />Load and unload database drivers</li>
             
       <li>
-        <code><a href="dbExecute.html">dbExecute</a></code><br />Execute an SQL statement that does not produce a result set</li>
+        <code><a href="dbExecute.html">dbExecute</a></code><br />Execute an update statement, query number of rows affected, and then close result set</li>
             
       <li>
         <code><a href="dbExistsTable.html">dbExistsTable</a></code><br />Does a table exist?</li>
@@ -235,10 +235,13 @@ Typically generator functions instantiate the driver objects like <code>RSQLite(
         <code><a href="dbRemoveTable.html">dbRemoveTable</a></code><br />Remove a table from the database</li>
             
       <li>
-        <code><a href="dbSendQuery.html">dbSendQuery</a></code><br />Execute a statement on a given database connection</li>
+        <code><a href="dbSendQuery.html">dbSendQuery</a></code><br />Execute a query on a given database connection</li>
             
       <li>
-        <code><a href="dbWithTransaction.html">dbWithTransaction</a></code><br />Self-contained SQL transactions</li>
+        <code><a href="dbSendStatement.html">dbSendStatement</a></code><br />Execute a data manipulation statement on a given database connection</li>
+            
+      <li>
+        <code><a href="dbWithTransaction.html">dbWithTransaction</a></code>(dbBreak)<br />Self-contained SQL transactions</li>
             
       <li>
         <code><a href="make.db.names.html">make.db.names</a></code>(SQLKeywords, isSQLKeyword, isSQLKeyword.default, make.db.names.default)<br />Make R identifiers into legal SQL identifiers</li>
