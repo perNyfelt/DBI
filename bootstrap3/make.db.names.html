@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>make.db.names. DBI 0.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">DBI 0.5</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+<li><a href="index.html"><i class="icon-home icon-white"></i><span class="glyphicon glyphicon-home">  </span>  Home</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Make R identifiers into legal SQL identifiers</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>make.db.names(dbObj, snames, keywords&nbsp;=&nbsp;.SQL92Keywords, unique&nbsp;=&nbsp;TRUE, allow.keywords&nbsp;=&nbsp;TRUE, ...)</div>
+<div>make.db.names.default(snames, keywords&nbsp;=&nbsp;.SQL92Keywords, unique&nbsp;=&nbsp;TRUE, allow.keywords&nbsp;=&nbsp;TRUE)</div>
+<div>isSQLKeyword(dbObj, name, keywords&nbsp;=&nbsp;.SQL92Keywords, case&nbsp;=&nbsp;c("lower", "upper", "any")[3], ...)</div>
+<div>isSQLKeyword.default(name, keywords&nbsp;=&nbsp;.SQL92Keywords, case&nbsp;=&nbsp;c("lower", "upper", "any")[3])</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>dbObj</dt>
+      <dd>any DBI object (e.g., <code>DBIDriver</code>).</dd>
+      <dt>snames</dt>
+      <dd>a character vector of R identifiers (symbols) from which we
+need to make SQL identifiers.</dd>
+      <dt>keywords</dt>
+      <dd>a character vector with SQL keywords, by default it's
+<code>.SQL92Keywords</code> defined by the DBI.</dd>
+      <dt>unique</dt>
+      <dd>logical describing whether the resulting set of SQL names
+should be unique.  Its default is <code>TRUE</code>.  Following the SQL 92
+standard, uniqueness of SQL identifiers is determined regardless of whether
+letters are upper or lower case.</dd>
+      <dt>allow.keywords</dt>
+      <dd>logical describing whether SQL keywords should be
+allowed in the resulting set of SQL names.  Its default is <code>TRUE</code></dd>
+      <dt>name</dt>
+      <dd>a character vector with database identifier candidates we need
+to determine whether they are legal SQL identifiers or not.</dd>
+      <dt>case</dt>
+      <dd>a character string specifying whether to make the comparison as
+lower case, upper case, or any of the two.  it defaults to <code>any</code>.</dd>
+      <dt>...</dt>
+      <dd>any other argument are passed to the driver implementation.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+<code>make.db.names</code> returns a character vector of legal SQL
+  identifiers corresponding to its <code>snames</code> argument.</p>
+  
+      <p><code>SQLKeywords</code> returns a character vector of all known keywords for the
+  database-engine associated with <code>dbObj</code>.</p>
+  
+      <p><code>isSQLKeyword</code> returns a logical vector parallel to <code>name</code>.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>These methods are DEPRECATED. Please use <code><a href='SQL.html'>dbQuoteIdentifier</a></code>
+(or possibly <code><a href='SQL.html'>dbQuoteString</a></code>) instead.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The algorithm in <code>make.db.names</code> first invokes <code>make.names</code> and
+then replaces each occurrence of a dot ``.'' by an underscore ``\_''.  If
+<code>allow.keywords</code> is <code>FALSE</code> and identifiers collide with SQL
+keywords, a small integer is appended to the identifier in the form of
+<code>"_n"</code>.</p>
+  
+      <p>The set of SQL keywords is stored in the character vector
+<code>.SQL92Keywords</code> and reflects the SQL ANSI/ISO standard as documented
+in "X/Open SQL and RDA", 1994, ISBN 1-872630-68-8.  Users can easily
+override or update this vector.</p>
+  
+    </div>
+
+    <div class="Bugs">
+      <h2>Bugs</h2>
+
+      <p></p>
+  
+      <p>The current mapping is not guaranteed to be fully reversible: some SQL
+identifiers that get mapped into R identifiers with <code>make.names</code> and
+then back to SQL with <code><a href='make.db.names.html'>make.db.names</a></code> will not be equal to the
+original SQL identifiers (e.g., compound SQL identifiers of the form
+<code>username.tablename</code> will loose the dot ``.'').</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>The set of SQL keywords is stored in the character vector
+  <code>.SQL92Keywords</code> and reflects the SQL ANSI/ISO standard as documented
+  in "X/Open SQL and RDA", 1994, ISBN 1-872630-68-8.  Users can easily
+  override or update this vector.</p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>SQLKeywords</li><li>isSQLKeyword</li><li>isSQLKeyword.default</li><li>make.db.names</li><li>make.db.names.default</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

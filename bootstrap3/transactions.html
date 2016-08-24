@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>transactions. DBI 0.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">DBI 0.5</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+<li><a href="index.html"><i class="icon-home icon-white"></i><span class="glyphicon glyphicon-home">  </span>  Home</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Begin/commit/rollback SQL transactions</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>dbBegin(conn, ...)</div>
+<div>dbCommit(conn, ...)</div>
+<div>dbRollback(conn, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>conn</dt>
+      <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as produced by
+<code><a href='dbConnect.html'>dbConnect</a></code>.</dd>
+      <dt>...</dt>
+      <dd>Other parameters passed on to methods.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+a logical indicating whether the operation succeeded or not.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Not all database engines implement transaction management, in which case
+these methods should not be implemented for the specific
+<code><a href='DBIConnection-class.html'>DBIConnection</a></code> subclass.</p>
+  
+    </div>
+
+    <div class="Side Effects">
+      <h2>Side Effects</h2>
+
+      <p></p>
+  
+      <p>The current transaction on the connection <code>con</code> is committed or rolled
+back.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>## Not run: 
+# ora &lt;- dbDriver(&quot;Oracle&quot;)
+# con &lt;- dbConnect(ora)
+# 
+# rs &lt;- dbSendQuery(con,
+#       &quot;delete * from PURGE as p where p.wavelength&lt;0.03&quot;)
+# if (dbGetRowsAffected(rs) &gt; 250) {
+#   warning(&quot;dubious deletion -- rolling back transaction&quot;)
+#   dbRollback(con)
+# } else {
+#   dbCommit(con)
+# }
+# 
+# dbClearResult(rs)
+# dbDisconnect(con)
+# ## End(Not run)
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dbBegin</li><li>dbCommit</li><li>dbRollback</li><li>transactions</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Self-contained transactions: <code><a href='dbWithTransaction.html'>dbWithTransaction</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

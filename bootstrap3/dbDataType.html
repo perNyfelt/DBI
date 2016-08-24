@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dbDataType. DBI 0.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">DBI 0.5</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+<li><a href="index.html"><i class="icon-home icon-white"></i><span class="glyphicon glyphicon-home">  </span>  Home</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Determine the SQL data type of an object</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>dbDataType(dbObj, obj, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>dbObj</dt>
+      <dd>A object inheriting from <code><a href='DBIDriver-class.html'>DBIDriver</a></code>
+or <code><a href='DBIConnection-class.html'>DBIConnection</a></code></dd>
+      <dt>obj</dt>
+      <dd>An R object whose SQL type we want to determine.</dd>
+      <dt>...</dt>
+      <dd>Other arguments passed on to methods.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A character string specifying the SQL data type for <code>obj</code>.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>This is a generic function. The default method determines the SQL type of an
+R object according to the SQL 92 specification, which may serve as a starting
+point for driver implementations. The default method also provides a method
+for data.frame which will return a character vector giving the type for each
+column in the dataframe.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The data types supported by databases are different than the data types in R,
+but the mapping between the primitve types is straightforward:  Any of the
+many fixed and varying length character types are mapped to character
+vectors. Fixed-precision (non-IEEE) numbers are mapped into either numeric or
+integer vectors.</p>
+  
+      <p>Notice that many DBMS do not follow IEEE arithmetic, so there are potential
+problems with under/overflows and loss of precision.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>dbDataType(ANSI(), 1:5)
+</div>
+<div class='output'>[1] &quot;INT&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), 1)
+</div>
+<div class='output'>[1] &quot;DOUBLE&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), TRUE)
+</div>
+<div class='output'>[1] &quot;SMALLINT&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), Sys.Date())
+</div>
+<div class='output'>[1] &quot;DATE&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), Sys.time())
+</div>
+<div class='output'>[1] &quot;TIMESTAMP&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), Sys.time() - as.POSIXct(Sys.Date()))
+</div>
+<div class='output'>[1] &quot;TIME&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), c(&quot;x&quot;, &quot;abc&quot;))
+</div>
+<div class='output'>[1] &quot;TEXT&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), list(raw(10), raw(20)))
+</div>
+<div class='output'>[1] &quot;BLOB&quot;
+</div>
+<div class='input'>dbDataType(ANSI(), I(3))
+</div>
+<div class='output'>[1] &quot;DOUBLE&quot;
+</div>
+<div class='input'>
+dbDataType(ANSI(), iris)
+</div>
+<div class='output'>Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
+    &quot;DOUBLE&quot;     &quot;DOUBLE&quot;     &quot;DOUBLE&quot;     &quot;DOUBLE&quot;       &quot;TEXT&quot; 
+</div>
+<div class='input'>
+con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+
+dbDataType(con, 1:5)
+</div>
+<div class='output'>[1] &quot;INTEGER&quot;
+</div>
+<div class='input'>dbDataType(con, 1)
+</div>
+<div class='output'>[1] &quot;REAL&quot;
+</div>
+<div class='input'>dbDataType(con, TRUE)
+</div>
+<div class='output'>[1] &quot;INTEGER&quot;
+</div>
+<div class='input'>dbDataType(con, Sys.Date())
+</div>
+<div class='output'>[1] &quot;REAL&quot;
+</div>
+<div class='input'>dbDataType(con, Sys.time())
+</div>
+<div class='output'>[1] &quot;REAL&quot;
+</div>
+<div class='input'>dbDataType(con, Sys.time() - as.POSIXct(Sys.Date()))
+</div>
+<div class='output'>[1] &quot;REAL&quot;
+</div>
+<div class='input'>dbDataType(con, c(&quot;x&quot;, &quot;abc&quot;))
+</div>
+<div class='output'>[1] &quot;TEXT&quot;
+</div>
+<div class='input'>dbDataType(con, list(raw(10), raw(20)))
+</div>
+<div class='output'>[1] &quot;BLOB&quot;
+</div>
+<div class='input'>dbDataType(con, I(3))
+</div>
+<div class='output'>[1] &quot;REAL&quot;
+</div>
+<div class='input'>
+dbDataType(con, iris)
+</div>
+<div class='output'>[1] &quot;BLOB&quot;
+</div>
+<div class='input'>
+dbDisconnect(con)
+</div>
+<div class='output'>[1] TRUE
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dbDataType</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Other DBIConnection generics: <code><a href='DBIConnection-class.html'>DBIConnection-class</a></code>,
+  <code><a href='dbDisconnect.html'>dbDisconnect</a></code>, <code><a href='dbExecute.html'>dbExecute</a></code>,
+  <code><a href='dbExistsTable.html'>dbExistsTable</a></code>,
+  <code><a href='dbGetException.html'>dbGetException</a></code>, <code><a href='dbGetInfo.html'>dbGetInfo</a></code>,
+  <code><a href='dbGetQuery.html'>dbGetQuery</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
+  <code><a href='dbListFields.html'>dbListFields</a></code>, <code><a href='dbListResults.html'>dbListResults</a></code>,
+  <code><a href='dbListTables.html'>dbListTables</a></code>, <code><a href='dbReadTable.html'>dbReadTable</a></code>,
+  <code><a href='dbRemoveTable.html'>dbRemoveTable</a></code>, <code><a href='dbSendQuery.html'>dbSendQuery</a></code>,
+  <code><a href='dbSendStatement.html'>dbSendStatement</a></code>
+
+Other DBIDriver generics: <code><a href='DBIDriver-class.html'>DBIDriver-class</a></code>,
+  <code><a href='dbConnect.html'>dbConnect</a></code>, <code><a href='dbDriver.html'>dbDriver</a></code>,
+  <code><a href='dbGetInfo.html'>dbGetInfo</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>,
+  <code><a href='dbListConnections.html'>dbListConnections</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

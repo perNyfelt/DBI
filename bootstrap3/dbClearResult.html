@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dbClearResult. DBI 0.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">DBI 0.5</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+<li><a href="index.html"><i class="icon-home icon-white"></i><span class="glyphicon glyphicon-home">  </span>  Home</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Clear a result set</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>dbClearResult(res, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>res</dt>
+      <dd>An object inheriting from <code><a href='DBIResult-class.html'>DBIResult</a></code>.</dd>
+      <dt>...</dt>
+      <dd>Other arguments passed on to methods.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+a logical indicating whether clearing the
+  result set was successful or not.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Frees all resources (local and remote) associated with a result set.  In some
+cases (e.g., very large result sets) this can be a critical step to avoid
+exhausting resources (memory, file descriptors, etc.)</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+</div>
+<strong class='warning'>Warning message:
+replacing previous import ‘DBI::coerce’ by ‘methods::coerce’ when loading ‘RSQLite’</strong>
+<div class='input'>
+rs &lt;- dbSendQuery(con, &quot;SELECT 1&quot;)
+print(dbFetch(rs))
+</div>
+<div class='output'>  1
+1 1
+</div>
+<div class='input'>
+dbClearResult(rs)
+</div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'>dbDisconnect(con)
+</div>
+<div class='output'>[1] TRUE
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dbClearResult</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Other DBIResult generics: <code><a href='DBIResult-class.html'>DBIResult-class</a></code>,
+  <code><a href='SQL.html'>SQL</a></code>, <code><a href='dbBind.html'>dbBind</a></code>,
+  <code><a href='dbColumnInfo.html'>dbColumnInfo</a></code>, <code><a href='dbFetch.html'>dbFetch</a></code>,
+  <code><a href='dbGetInfo.html'>dbGetInfo</a></code>, <code><a href='dbGetRowCount.html'>dbGetRowCount</a></code>,
+  <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code>,
+  <code><a href='dbGetStatement.html'>dbGetStatement</a></code>,
+  <code><a href='dbHasCompleted.html'>dbHasCompleted</a></code>, <code><a href='dbIsValid.html'>dbIsValid</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

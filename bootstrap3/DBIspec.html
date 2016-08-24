@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>DBIspec. DBI 0.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">DBI 0.5</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+<li><a href="index.html"><i class="icon-home icon-white"></i><span class="glyphicon glyphicon-home">  </span>  Home</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>DBI specification</h1>
+
+<div class="row">
+  <div class="span8">
+        
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>The <span class = "pkg">DBI</span> package defines the generic DataBase Interface for R.
+The connection to individual DBMS is made by packages that import <span class = "pkg">DBI</span>
+(so-called <em>DBI backends</em>).
+This document formalizes the behavior expected by the functions declared in
+<span class = "pkg">DBI</span> and implemented by the individal backends.</p>
+  
+      <p>To ensure maximum portability and exchangeability, and to reduce the effort
+for implementing a new DBI backend, the <span class = "pkg">DBItest</span> package defines
+a comprehensive set of test cases that test conformance to the DBI
+specification.
+In fact, this document is derived from comments in the test definitions of
+the <span class = "pkg">DBItest</span> package.
+This ensures that an extension or update to the tests will be reflected in
+this document.</p>
+  
+    </div>
+
+    <div class="Getting started">
+      <h2>Getting started</h2>
+
+      <p></p>
+  
+      <p>A DBI backend is an R package,
+which should import the <span class = "pkg">DBI</span>
+and <span class = "pkg">methods</span>
+packages.
+For better or worse, the names of many existing backends start with
+&#145;R&#146;, e.g., <span class = "pkg">RSQLite</span>, <span class = "pkg">RMySQL</span>, <span class = "pkg">RSQLServer</span>; it is up
+to the package author to adopt this convention or not.</p>
+  
+    </div>
+
+    <div class="Driver">
+      <h2>Driver</h2>
+
+      <p></p>
+  
+      <p>Each DBI backend implements a <dfn>driver class</dfn>,
+which must be an S4 class and inherit from the <code>DBIDriver</code> class.
+This section describes the construction of, and the methods defined for,
+this driver class.</p>
+  
+      <p><h3>Construction</h3>The backend must support creation of an instance of this driver class
+with a <dfn>constructor function</dfn>.
+By default, its name is the package name without the leading &#145;R&#146;
+(if it exists), e.g., <code>SQLite</code> for the <span class = "pkg">RSQLite</span> package.
+For the automated tests, the constructor name can be tweaked using the
+<code>constructor_name</code> tweak.The constructor must be exported, and
+it must be a function
+that is callable without arguments.
+For the automated tests, unless the
+<code>constructor_relax_args</code> tweak is set to <code>TRUE</code>,
+an empty argument list is expected.
+Otherwise, an argument list where all arguments have default values
+is also accepted.</p>
+  
+      <p><h3><code>dbDataType("DBIDriver", "ANY")</code></h3>The backend can override the <code><a href='dbDataType.html'>dbDataType</a></code> generic
+for its driver class.
+This generic expects an arbitrary object as second argument
+and returns a corresponding SQL type
+as atomic
+character value
+with at least one character.
+As-is objects (i.e., wrapped by <code><a href='http://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></code>) must be
+supported and return the same results as their unwrapped counterparts.To query the values returned by the default implementation,
+run <code>example(dbDataType, package = "DBI")</code>.
+If the backend needs to override this generic,
+it must accept all basic R data types as its second argument, namely
+<code><a href='http://www.rdocumentation.org/packages/base/topics/logical'>logical</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/base/topics/integer'>integer</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/base/topics/character'>character</a></code>,
+dates (see <code><a href='http://www.rdocumentation.org/packages/base/topics/Dates'>Dates</a></code>),
+date-time (see <code><a href='http://www.rdocumentation.org/packages/base/topics/DateTimeClasses'>DateTimeClasses</a></code>),
+and <code><a href='http://www.rdocumentation.org/packages/base/topics/difftime'>difftime</a></code>.
+It also must accept lists of <code>raw</code> vectors
+and map them to the BLOB (binary large object) data type.
+The behavior for other object types is not specified.</p>
+  
+    </div>
+
+    <div class="Transactions">
+      <h2>Transactions</h2>
+
+      <p></p>
+  
+      <p><h3><code>dbBegin("DBIConnection")</code> and <code>dbCommit("DBIConnection")</code></h3>Transactions are available in DBI, but actual support may vary between backends.
+A transaction is initiated by a call to <code><a href='transactions.html'>dbBegin</a></code>
+and committed by a call to <code><a href='transactions.html'>dbCommit</a></code>.
+Both generics expect an object of class <code><a href='DBIConnection-class.html'>DBIConnection</a></code>
+and return <code>TRUE</code> (invisibly) upon success.The implementations are expected to raise an error in case of failure,
+but this is difficult to test in an automated way.
+In any way, both generics should throw an error with a closed connection.
+In addition, a call to <code><a href='transactions.html'>dbCommit</a></code> without
+a call to <code><a href='transactions.html'>dbBegin</a></code> should raise an error.
+Nested transactions are not supported by DBI,
+an attempt to call <code><a href='transactions.html'>dbBegin</a></code> twice
+should yield an error.Data written in a transaction must persist after the transaction is committed.
+For example, a table that is missing when the transaction is started
+but is created
+and populated during the transaction
+must exist and contain the data added there
+both during
+and after the transaction.The transaction isolation level is not specified by DBI.</p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>DBIspec</li>
+    </ul>
+    <ul>
+      <li>datasets</li>
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
