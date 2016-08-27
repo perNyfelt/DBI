@@ -53,9 +53,11 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>SQL(x)</div>
-<div>dbQuoteIdentifier(conn, x, ...)</div>
-<div>dbQuoteString(conn, x, ...)</div></pre>
+    <pre><span class="functioncall"><a href='SQL.html'>SQL</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='SQL.html'>dbQuoteIdentifier</a></span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='SQL.html'>dbQuoteString</a></span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -110,43 +112,36 @@ return <code>x</code> unchanged.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'># Quoting ensures that arbitrary input is safe for use in a query
-name &lt;- &quot;Robert&#39;); DROP TABLE Students;--&quot;
-dbQuoteString(ANSI(), name)
-</div>
+    <pre class="examples"><div class='input'><span class="comment"># Quoting ensures that arbitrary input is safe for use in a query</span>
+<span class="symbol">name</span> <span class="assignement">&lt;-</span> <span class="string">"Robert'); DROP TABLE Students;--"</span>
+<span class="functioncall"><a href='SQL.html'>dbQuoteString</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">name</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; &#39;Robert&#39;&#39;); DROP TABLE Students;--&#39;
 </div>
-<div class='input'>dbQuoteIdentifier(ANSI(), name)
-</div>
+<div class='input'><span class="functioncall"><a href='SQL.html'>dbQuoteIdentifier</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">name</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; &quot;Robert&#39;); DROP TABLE Students;--&quot;
 </div>
 <div class='input'>
-# NAs become NULL
-dbQuoteString(ANSI(), c(&quot;x&quot;, NA))
-</div>
+<span class="comment"># NAs become NULL</span>
+<span class="functioncall"><a href='SQL.html'>dbQuoteString</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"x"</span><span class="keyword">,</span> <span class="number">NA</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; &#39;x&#39;
 &lt;SQL&gt; NULL
 </div>
 <div class='input'>
-# SQL vectors are always passed through as is
-var_name &lt;- SQL(&quot;select&quot;)
-var_name
-</div>
+<span class="comment"># SQL vectors are always passed through as is</span>
+<span class="symbol">var_name</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='SQL.html'>SQL</a></span><span class="keyword">(</span><span class="string">"select"</span><span class="keyword">)</span>
+<span class="symbol">var_name</span></div>
 <div class='output'>&lt;SQL&gt; select
 </div>
 <div class='input'>
-dbQuoteIdentifier(ANSI(), var_name)
-</div>
+<span class="functioncall"><a href='SQL.html'>dbQuoteIdentifier</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">var_name</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; select
 </div>
-<div class='input'>dbQuoteString(ANSI(), var_name)
-</div>
+<div class='input'><span class="functioncall"><a href='SQL.html'>dbQuoteString</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">var_name</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; select
 </div>
 <div class='input'>
-# This mechanism is used to prevent double escaping
-dbQuoteString(ANSI(), dbQuoteString(ANSI(), name))
-</div>
+<span class="comment"># This mechanism is used to prevent double escaping</span>
+<span class="functioncall"><a href='SQL.html'>dbQuoteString</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='SQL.html'>dbQuoteString</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">name</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; &#39;Robert&#39;&#39;); DROP TABLE Students;--&#39;
 </div></pre>
   </div>

@@ -53,8 +53,10 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>sqlAppendTable(con, table, values, row.names&nbsp;=&nbsp;NA, ...)</div>
-<div>sqlAppendTableTemplate(con, table, values, row.names&nbsp;=&nbsp;NA, prefix&nbsp;=&nbsp;"?", ...)</div></pre>
+    <pre><span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">table</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">,</span> <span class="argument">row.names</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">NA</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTableTemplate</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">table</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">,</span> <span class="argument">row.names</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">NA</span><span class="keyword">,</span> <span class="argument">prefix</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"?"</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -94,8 +96,7 @@ These methods are mostly useful for backend implementers.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>sqlAppendTable(ANSI(), &quot;iris&quot;, head(iris))
-</div>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTable</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"iris"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/utils/topics/head'>head</a></span><span class="keyword">(</span><span class="symbol">iris</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; INSERT INTO &quot;iris&quot;
   (&quot;Sepal.Length&quot;, &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;, &quot;Species&quot;)
 VALUES
@@ -107,8 +108,7 @@ VALUES
   (5.4, 3.9, 1.7, 0.4, &#39;setosa&#39;)
 </div>
 <div class='input'>
-sqlAppendTable(ANSI(), &quot;mtcars&quot;, head(mtcars))
-</div>
+<span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTable</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"mtcars"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/utils/topics/head'>head</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
   (&quot;row_names&quot;, &quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
 VALUES
@@ -119,8 +119,7 @@ VALUES
   (&#39;Hornet Sportabout&#39;, 18.7, 8, 360, 175, 3.15, 3.44, 17.02, 0, 0, 3, 2),
   (&#39;Valiant&#39;, 18.1, 6, 225, 105, 2.76, 3.46, 20.22, 1, 0, 3, 1)
 </div>
-<div class='input'>sqlAppendTable(ANSI(), &quot;mtcars&quot;, head(mtcars), row.names = FALSE)
-</div>
+<div class='input'><span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTable</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"mtcars"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/utils/topics/head'>head</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">row.names</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
   (&quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
 VALUES
@@ -131,23 +130,20 @@ VALUES
   (18.7, 8, 360, 175, 3.15, 3.44, 17.02, 0, 0, 3, 2),
   (18.1, 6, 225, 105, 2.76, 3.46, 20.22, 1, 0, 3, 1)
 </div>
-<div class='input'>sqlAppendTableTemplate(ANSI(), &quot;iris&quot;, iris)
-</div>
+<div class='input'><span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTableTemplate</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"iris"</span><span class="keyword">,</span> <span class="symbol">iris</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; INSERT INTO &quot;iris&quot;
   (&quot;Sepal.Length&quot;, &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;, &quot;Species&quot;)
 VALUES
   (?1, ?2, ?3, ?4, ?5)
 </div>
 <div class='input'>
-sqlAppendTableTemplate(ANSI(), &quot;mtcars&quot;, mtcars)
-</div>
+<span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTableTemplate</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"mtcars"</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
   (&quot;row_names&quot;, &quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
 VALUES
   (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)
 </div>
-<div class='input'>sqlAppendTableTemplate(ANSI(), &quot;mtcars&quot;, mtcars, row.names = FALSE)
-</div>
+<div class='input'><span class="functioncall"><a href='sqlAppendTable.html'>sqlAppendTableTemplate</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"mtcars"</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">row.names</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; INSERT INTO &quot;mtcars&quot;
   (&quot;mpg&quot;, &quot;cyl&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;drat&quot;, &quot;wt&quot;, &quot;qsec&quot;, &quot;vs&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;carb&quot;)
 VALUES

@@ -53,7 +53,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>dbDataType(dbObj, obj, ...)</div></pre>
+    <pre><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">dbObj</span><span class="keyword">,</span> <span class="symbol">obj</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -101,95 +101,74 @@ problems with under/overflows and loss of precision.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>dbDataType(ANSI(), 1:5)
-</div>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;INT&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), 1)
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;DOUBLE&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), TRUE)
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">TRUE</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;SMALLINT&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), Sys.Date())
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.Date</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;DATE&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), Sys.time())
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;TIMESTAMP&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), Sys.time() - as.POSIXct(Sys.Date()))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/as.POSIXlt'>as.POSIXct</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.Date</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;TIME&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), c(&quot;x&quot;, &quot;abc&quot;))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"x"</span><span class="keyword">,</span> <span class="string">"abc"</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;TEXT&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), list(raw(10), raw(20)))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/raw'>raw</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/raw'>raw</a></span><span class="keyword">(</span><span class="number">20</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;BLOB&quot;
 </div>
-<div class='input'>dbDataType(ANSI(), I(3))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;DOUBLE&quot;
 </div>
 <div class='input'>
-dbDataType(ANSI(), iris)
-</div>
+<span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">iris</span><span class="keyword">)</span></div>
 <div class='output'>Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
     &quot;DOUBLE&quot;     &quot;DOUBLE&quot;     &quot;DOUBLE&quot;     &quot;DOUBLE&quot;       &quot;TEXT&quot; 
 </div>
 <div class='input'>
-con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+<span class="symbol">con</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbConnect.html'>dbConnect</a></span><span class="keyword">(</span><span class="package">RSQLite</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">":memory:"</span><span class="keyword">)</span>
 
-dbDataType(con, 1:5)
-</div>
+<span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;INTEGER&quot;
 </div>
-<div class='input'>dbDataType(con, 1)
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;REAL&quot;
 </div>
-<div class='input'>dbDataType(con, TRUE)
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="number">TRUE</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;INTEGER&quot;
 </div>
-<div class='input'>dbDataType(con, Sys.Date())
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.Date</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;REAL&quot;
 </div>
-<div class='input'>dbDataType(con, Sys.time())
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;REAL&quot;
 </div>
-<div class='input'>dbDataType(con, Sys.time() - as.POSIXct(Sys.Date()))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/as.POSIXlt'>as.POSIXct</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.Date</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;REAL&quot;
 </div>
-<div class='input'>dbDataType(con, c(&quot;x&quot;, &quot;abc&quot;))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"x"</span><span class="keyword">,</span> <span class="string">"abc"</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;TEXT&quot;
 </div>
-<div class='input'>dbDataType(con, list(raw(10), raw(20)))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/raw'>raw</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/raw'>raw</a></span><span class="keyword">(</span><span class="number">20</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;BLOB&quot;
 </div>
-<div class='input'>dbDataType(con, I(3))
-</div>
+<div class='input'><span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;REAL&quot;
 </div>
 <div class='input'>
-dbDataType(con, iris)
-</div>
+<span class="functioncall"><a href='dbDataType.html'>dbDataType</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">iris</span><span class="keyword">)</span></div>
 <div class='output'>[1] &quot;BLOB&quot;
 </div>
 <div class='input'>
-dbDisconnect(con)
-</div>
+<span class="functioncall"><a href='dbDisconnect.html'>dbDisconnect</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div></pre>
   </div>

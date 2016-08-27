@@ -53,8 +53,9 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>dbDriver(drvName, ...)</div>
-<div>dbUnloadDriver(drv, ...)</div></pre>
+    <pre><span class="functioncall"><a href='dbDriver.html'>dbDriver</a></span><span class="keyword">(</span><span class="symbol">drvName</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='dbDriver.html'>dbUnloadDriver</a></span><span class="keyword">(</span><span class="symbol">drv</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -106,16 +107,14 @@ connecting to the database engine itself needs to be done through calls to
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'># Create a RSQLite driver with a string
-d &lt;- dbDriver(&quot;SQLite&quot;)
-d
-</div>
+    <pre class="examples"><div class='input'><span class="comment"># Create a RSQLite driver with a string</span>
+<span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbDriver.html'>dbDriver</a></span><span class="keyword">(</span><span class="string">"SQLite"</span><span class="keyword">)</span>
+<span class="symbol">d</span></div>
 <div class='output'>&lt;SQLiteDriver&gt;
 </div>
 <div class='input'>
-# But better, access the object directly
-RSQLite::SQLite()
-</div>
+<span class="comment"># But better, access the object directly</span>
+<span class="package">RSQLite</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQLiteDriver&gt;
 </div></pre>
   </div>

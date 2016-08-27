@@ -53,7 +53,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>sqlCreateTable(con, table, fields, row.names&nbsp;=&nbsp;NA, temporary&nbsp;=&nbsp;FALSE, ...)</div></pre>
+    <pre><span class="functioncall"><a href='sqlCreateTable.html'>sqlCreateTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">table</span><span class="keyword">,</span> <span class="symbol">fields</span><span class="keyword">,</span> <span class="argument">row.names</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">NA</span><span class="keyword">,</span> <span class="argument">temporary</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -109,16 +109,14 @@ and will generate an error on every call.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>sqlCreateTable(ANSI(), &quot;my-table&quot;, c(a = &quot;integer&quot;, b = &quot;text&quot;))
-</div>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='sqlCreateTable.html'>sqlCreateTable</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"my-table"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="argument">a</span> <span class="argument">=</span> <span class="string">"integer"</span><span class="keyword">,</span> <span class="argument">b</span> <span class="argument">=</span> <span class="string">"text"</span><span class="keyword">)</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; CREATE TABLE &quot;my-table&quot; (
   &quot;a&quot; integer,
   &quot;b&quot; text
 )
 
 </div>
-<div class='input'>sqlCreateTable(ANSI(), &quot;my-table&quot;, iris)
-</div>
+<div class='input'><span class="functioncall"><a href='sqlCreateTable.html'>sqlCreateTable</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"my-table"</span><span class="keyword">,</span> <span class="symbol">iris</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; CREATE TABLE &quot;my-table&quot; (
   &quot;Sepal.Length&quot; DOUBLE,
   &quot;Sepal.Width&quot; DOUBLE,
@@ -129,9 +127,8 @@ and will generate an error on every call.</p>
 
 </div>
 <div class='input'>
-# By default, character row names are converted to a row_names colum
-sqlCreateTable(ANSI(), &quot;mtcars&quot;, mtcars[, 1:5])
-</div>
+<span class="comment"># By default, character row names are converted to a row_names colum</span>
+<span class="functioncall"><a href='sqlCreateTable.html'>sqlCreateTable</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"mtcars"</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">]</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; CREATE TABLE &quot;mtcars&quot; (
   &quot;row_names&quot; TEXT,
   &quot;mpg&quot; DOUBLE,
@@ -142,8 +139,7 @@ sqlCreateTable(ANSI(), &quot;mtcars&quot;, mtcars[, 1:5])
 )
 
 </div>
-<div class='input'>sqlCreateTable(ANSI(), &quot;mtcars&quot;, mtcars[, 1:5], row.names = FALSE)
-</div>
+<div class='input'><span class="functioncall"><a href='sqlCreateTable.html'>sqlCreateTable</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"mtcars"</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">row.names</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; CREATE TABLE &quot;mtcars&quot; (
   &quot;mpg&quot; DOUBLE,
   &quot;cyl&quot; DOUBLE,

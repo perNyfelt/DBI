@@ -101,29 +101,24 @@ or parent of the class hierarchy.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>drv &lt;- RSQLite::SQLite()
-con &lt;- dbConnect(drv)
+    <pre class="examples"><div class='input'><span class="symbol">drv</span> <span class="assignement">&lt;-</span> <span class="package">RSQLite</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span><span class="keyword">(</span><span class="keyword">)</span>
+<span class="symbol">con</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbConnect.html'>dbConnect</a></span><span class="keyword">(</span><span class="symbol">drv</span><span class="keyword">)</span>
 
-rs &lt;- dbSendQuery(con, &quot;SELECT 1&quot;)
-is(drv, &quot;DBIObject&quot;)   ## True
-</div>
+<span class="symbol">rs</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbSendQuery.html'>dbSendQuery</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"SELECT 1"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.rdocumentation.org/packages/methods/topics/is'>is</a></span><span class="keyword">(</span><span class="symbol">drv</span><span class="keyword">,</span> <span class="string">"DBIObject"</span><span class="keyword">)</span>   <span class="comment">## True</span></div>
 <div class='output'>[1] TRUE
 </div>
-<div class='input'>is(con, &quot;DBIObject&quot;)   ## True
-</div>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/methods/topics/is'>is</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"DBIObject"</span><span class="keyword">)</span>   <span class="comment">## True</span></div>
 <div class='output'>[1] TRUE
 </div>
-<div class='input'>is(rs, &quot;DBIObject&quot;)
-</div>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/methods/topics/is'>is</a></span><span class="keyword">(</span><span class="symbol">rs</span><span class="keyword">,</span> <span class="string">"DBIObject"</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
 <div class='input'>
-dbClearResult(rs)
-</div>
+<span class="functioncall"><a href='dbClearResult.html'>dbClearResult</a></span><span class="keyword">(</span><span class="symbol">rs</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
-<div class='input'>dbDisconnect(con)
-</div>
+<div class='input'><span class="functioncall"><a href='dbDisconnect.html'>dbDisconnect</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div></pre>
   </div>

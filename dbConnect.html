@@ -53,7 +53,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>dbConnect(drv, ...)</div></pre>
+    <pre><span class="functioncall"><a href='dbConnect.html'>dbConnect</a></span><span class="keyword">(</span><span class="symbol">drv</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -100,23 +100,20 @@ documentation of individual drivers for details.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'># SQLite only needs a path to the database. Other database drivers
-# will require more details (like username, password, host, port etc)
-con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
-con
-</div>
+    <pre class="examples"><div class='input'><span class="comment"># SQLite only needs a path to the database. Other database drivers</span>
+<span class="comment"># will require more details (like username, password, host, port etc)</span>
+<span class="symbol">con</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbConnect.html'>dbConnect</a></span><span class="keyword">(</span><span class="package">RSQLite</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">":memory:"</span><span class="keyword">)</span>
+<span class="symbol">con</span></div>
 <div class='output'>&lt;SQLiteConnection&gt;
   Path: :memory:
   Extensions: TRUE
 </div>
 <div class='input'>
-dbListTables(con)
-</div>
+<span class="functioncall"><a href='dbListTables.html'>dbListTables</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">)</span></div>
 <div class='output'>character(0)
 </div>
 <div class='input'>
-dbDisconnect(con)
-</div>
+<span class="functioncall"><a href='dbDisconnect.html'>dbDisconnect</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div></pre>
   </div>

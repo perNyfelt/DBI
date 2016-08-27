@@ -53,10 +53,13 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>sqlParseVariables(con, sql, ...)</div>
-<div>sqlCommentSpec(start, end, endRequired)</div>
-<div>sqlQuoteSpec(start, end, escape&nbsp;=&nbsp;"", doubleEscape&nbsp;=&nbsp;TRUE)</div>
-<div>sqlParseVariablesImpl(sql, quotes, comments)</div></pre>
+    <pre><span class="functioncall"><a href='sqlParseVariables.html'>sqlParseVariables</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">sql</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='sqlParseVariables.html'>sqlCommentSpec</a></span><span class="keyword">(</span><span class="symbol">start</span><span class="keyword">,</span> <span class="symbol">end</span><span class="keyword">,</span> <span class="symbol">endRequired</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='sqlParseVariables.html'>sqlQuoteSpec</a></span><span class="keyword">(</span><span class="symbol">start</span><span class="keyword">,</span> <span class="symbol">end</span><span class="keyword">,</span> <span class="argument">escape</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">""</span><span class="keyword">,</span> <span class="argument">doubleEscape</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='sqlParseVariables.html'>sqlParseVariablesImpl</a></span><span class="keyword">(</span><span class="symbol">sql</span><span class="keyword">,</span> <span class="symbol">quotes</span><span class="keyword">,</span> <span class="symbol">comments</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -91,12 +94,11 @@ comment specifications.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'># Use [] for quoting and no comments
-sqlParseVariablesImpl(&quot;[?a]&quot;,
-  list(sqlQuoteSpec(&quot;[&quot;, &quot;]&quot;, &quot;\\&quot;, FALSE)),
-  list()
-)
-</div>
+    <pre class="examples"><div class='input'><span class="comment"># Use [] for quoting and no comments</span>
+<span class="functioncall"><a href='sqlParseVariables.html'>sqlParseVariablesImpl</a></span><span class="keyword">(</span><span class="string">"[?a]"</span><span class="keyword">,</span>
+  <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="functioncall"><a href='sqlParseVariables.html'>sqlQuoteSpec</a></span><span class="keyword">(</span><span class="string">"["</span><span class="keyword">,</span> <span class="string">"]"</span><span class="keyword">,</span> <span class="string">"\\"</span><span class="keyword">,</span> <span class="number">FALSE</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="keyword">)</span>
+<span class="keyword">)</span></div>
 <div class='output'>$start
 integer(0)
 
@@ -105,12 +107,11 @@ integer(0)
 
 </div>
 <div class='input'>
-# Standard quotes, use # for commenting
-sqlParseVariablesImpl(&quot;# ?a\n?b&quot;,
-  list(sqlQuoteSpec(&quot;&#39;&quot;, &quot;&#39;&quot;), sqlQuoteSpec(&#39;&quot;&#39;, &#39;&quot;&#39;)),
-  list(sqlCommentSpec(&quot;#&quot;, &quot;\n&quot;, FALSE))
-)
-</div>
+<span class="comment"># Standard quotes, use # for commenting</span>
+<span class="functioncall"><a href='sqlParseVariables.html'>sqlParseVariablesImpl</a></span><span class="keyword">(</span><span class="string">"# ?a\n?b"</span><span class="keyword">,</span>
+  <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="functioncall"><a href='sqlParseVariables.html'>sqlQuoteSpec</a></span><span class="keyword">(</span><span class="string">"'"</span><span class="keyword">,</span> <span class="string">"'"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='sqlParseVariables.html'>sqlQuoteSpec</a></span><span class="keyword">(</span><span class="string">'"'</span><span class="keyword">,</span> <span class="string">'"'</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="functioncall"><a href='sqlParseVariables.html'>sqlCommentSpec</a></span><span class="keyword">(</span><span class="string">"#"</span><span class="keyword">,</span> <span class="string">"\n"</span><span class="keyword">,</span> <span class="number">FALSE</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="keyword">)</span></div>
 <div class='output'>$start
 integer(0)
 

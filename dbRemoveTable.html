@@ -53,7 +53,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>dbRemoveTable(conn, name, ...)</div></pre>
+    <pre><span class="functioncall"><a href='dbRemoveTable.html'>dbRemoveTable</a></span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">name</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -83,31 +83,25 @@ a logical vector of length 1 indicating success or failure.
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+    <pre class="examples"><div class='input'><span class="symbol">con</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbConnect.html'>dbConnect</a></span><span class="keyword">(</span><span class="package">RSQLite</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">":memory:"</span><span class="keyword">)</span>
 
-dbExistsTable(con, &quot;iris&quot;)
-</div>
+<span class="functioncall"><a href='dbExistsTable.html'>dbExistsTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"iris"</span><span class="keyword">)</span></div>
 <div class='output'>[1] FALSE
 </div>
-<div class='input'>dbWriteTable(con, &quot;iris&quot;, iris)
-</div>
+<div class='input'><span class="functioncall"><a href='dbReadTable.html'>dbWriteTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"iris"</span><span class="keyword">,</span> <span class="symbol">iris</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
-<div class='input'>dbExistsTable(con, &quot;iris&quot;)
-</div>
+<div class='input'><span class="functioncall"><a href='dbExistsTable.html'>dbExistsTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"iris"</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
-<div class='input'>dbRemoveTable(con, &quot;iris&quot;)
-</div>
+<div class='input'><span class="functioncall"><a href='dbRemoveTable.html'>dbRemoveTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"iris"</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
-<div class='input'>dbExistsTable(con, &quot;iris&quot;)
-</div>
+<div class='input'><span class="functioncall"><a href='dbExistsTable.html'>dbExistsTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"iris"</span><span class="keyword">)</span></div>
 <div class='output'>[1] FALSE
 </div>
 <div class='input'>
-dbDisconnect(con)
-</div>
+<span class="functioncall"><a href='dbDisconnect.html'>dbDisconnect</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div></pre>
   </div>

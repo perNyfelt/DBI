@@ -53,34 +53,65 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>"dbDriver"(drvName, ...)</div>
-<div>"show"(object)</div>
-<div>"dbDataType"(dbObj, obj, ...)</div>
-<div>"show"(object)</div>
-<div>"dbSendStatement"(conn, statement, ...)</div>
-<div>"dbGetQuery"(conn, statement, ...)</div>
-<div>"dbExecute"(conn, statement, ...)</div>
-<div>"show"(object)</div>
-<div>"show"(object)</div>
-<div>"dbFetch"(res, n&nbsp;=&nbsp;-1, ...)</div>
-<div>"dbGetInfo"(dbObj, ...)</div>
-<div>"sqlData"(con, value, row.names&nbsp;=&nbsp;NA, ...)</div>
-<div>"make.db.names"(dbObj, snames, keywords&nbsp;=&nbsp;.SQL92Keywords, unique&nbsp;=&nbsp;TRUE, allow.keywords&nbsp;=&nbsp;TRUE, ...)</div>
-<div>"isSQLKeyword"(dbObj, name, keywords&nbsp;=&nbsp;.SQL92Keywords, case&nbsp;=&nbsp;c("lower", "upper", "any")[3], ...)</div>
-<div>"SQLKeywords"(dbObj, ...)</div>
-<div>"SQLKeywords"(dbObj, ...)</div>
-<div>"sqlInterpolate"(`_con`, `_sql`, ...)</div>
-<div>"sqlParseVariables"(con, sql, ...)</div>
-<div>"show"(object)</div>
-<div>"dbQuoteIdentifier"(conn, x, ...)</div>
-<div>"dbQuoteIdentifier"(conn, x, ...)</div>
-<div>"dbQuoteString"(conn, x, ...)</div>
-<div>"dbQuoteString"(conn, x, ...)</div>
-<div>"sqlCreateTable"(con, table, fields, row.names&nbsp;=&nbsp;NA, temporary&nbsp;=&nbsp;FALSE, ...)</div>
-<div>"sqlAppendTable"(con, table, values, row.names&nbsp;=&nbsp;NA, ...)</div>
-<div>"dbQuoteIdentifier"(conn, x, ...)</div>
-<div>"show"(object)</div>
-<div>"dbWithTransaction"(conn, code)</div></pre>
+    <pre><span class="string">"dbDriver"</span><span class="keyword">(</span><span class="symbol">drvName</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"show"</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span>
+
+<span class="string">"dbDataType"</span><span class="keyword">(</span><span class="symbol">dbObj</span><span class="keyword">,</span> <span class="symbol">obj</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"show"</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span>
+
+<span class="string">"dbSendStatement"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">statement</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"dbGetQuery"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">statement</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"dbExecute"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">statement</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"show"</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span>
+
+<span class="string">"show"</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span>
+
+<span class="string">"dbFetch"</span><span class="keyword">(</span><span class="symbol">res</span><span class="keyword">,</span> <span class="argument">n</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"dbGetInfo"</span><span class="keyword">(</span><span class="symbol">dbObj</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"sqlData"</span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">value</span><span class="keyword">,</span> <span class="argument">row.names</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">NA</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"make.db.names"</span><span class="keyword">(</span><span class="symbol">dbObj</span><span class="keyword">,</span> <span class="symbol">snames</span><span class="keyword">,</span>
+  <span class="argument">keywords</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="symbol">.SQL92Keywords</span><span class="keyword">,</span> <span class="argument">unique</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">allow.keywords</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"isSQLKeyword"</span><span class="keyword">(</span><span class="symbol">dbObj</span><span class="keyword">,</span> <span class="symbol">name</span><span class="keyword">,</span>
+  <span class="argument">keywords</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="symbol">.SQL92Keywords</span><span class="keyword">,</span> <span class="argument">case</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"lower"</span><span class="keyword">,</span> <span class="string">"upper"</span><span class="keyword">,</span> <span class="string">"any"</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"SQLKeywords"</span><span class="keyword">(</span><span class="symbol">dbObj</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"SQLKeywords"</span><span class="keyword">(</span><span class="symbol">dbObj</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"sqlInterpolate"</span><span class="keyword">(</span><span class="symbol">`_con`</span><span class="keyword">,</span> <span class="symbol">`_sql`</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"sqlParseVariables"</span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">sql</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"show"</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span>
+
+<span class="string">"dbQuoteIdentifier"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"dbQuoteIdentifier"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"dbQuoteString"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"dbQuoteString"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"sqlCreateTable"</span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">table</span><span class="keyword">,</span> <span class="symbol">fields</span><span class="keyword">,</span> <span class="argument">row.names</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">NA</span><span class="keyword">,</span>
+  <span class="argument">temporary</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"sqlAppendTable"</span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="symbol">table</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">,</span> <span class="argument">row.names</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">NA</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"dbQuoteIdentifier"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="string">"show"</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span>
+
+<span class="string">"dbWithTransaction"</span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">code</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>

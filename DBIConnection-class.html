@@ -73,24 +73,21 @@ connections.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
-con
-</div>
+    <pre class="examples"><div class='input'><span class="symbol">con</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbConnect.html'>dbConnect</a></span><span class="keyword">(</span><span class="package">RSQLite</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">":memory:"</span><span class="keyword">)</span>
+<span class="symbol">con</span></div>
 <div class='output'>&lt;SQLiteConnection&gt;
   Path: :memory:
   Extensions: TRUE
 </div>
-<div class='input'>dbDisconnect(con)
-</div>
+<div class='input'><span class="functioncall"><a href='dbDisconnect.html'>dbDisconnect</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
 <div class='input'>
-## Not run: 
-# con &lt;- dbConnect(RPostgreSQL::PostgreSQL(), &quot;username&quot;, &quot;passsword&quot;)
-# con
-# dbDisconnect(con)
-# ## End(Not run)
-</div></pre>
+<span class="comment">## Not run: </span>
+<span class="comment"># con &lt;- dbConnect(RPostgreSQL::PostgreSQL(), "username", "passsword")</span>
+<span class="comment"># con</span>
+<span class="comment"># dbDisconnect(con)</span>
+<span class="comment"># ## End(Not run)</span></div></pre>
   </div>
   <div class="span4">
     <!-- <ul>

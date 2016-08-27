@@ -53,7 +53,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>sqlInterpolate(`_con`, `_sql`, ...)</div></pre>
+    <pre><span class="functioncall"><a href='sqlInterpolate.html'>sqlInterpolate</a></span><span class="keyword">(</span><span class="symbol">`_con`</span><span class="keyword">,</span> <span class="symbol">`_sql`</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -90,15 +90,13 @@ in errors matching supplied and interpolated variables.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>sql &lt;- &quot;SELECT * FROM X WHERE name = ?name&quot;
-sqlInterpolate(ANSI(), sql, name = &quot;Hadley&quot;)
-</div>
+    <pre class="examples"><div class='input'><span class="symbol">sql</span> <span class="assignement">&lt;-</span> <span class="string">"SELECT * FROM X WHERE name = ?name"</span>
+<span class="functioncall"><a href='sqlInterpolate.html'>sqlInterpolate</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">sql</span><span class="keyword">,</span> <span class="argument">name</span> <span class="argument">=</span> <span class="string">"Hadley"</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; SELECT * FROM X WHERE name = &#39;Hadley&#39;
 </div>
 <div class='input'>
-# This is safe because the single quote has been double escaped
-sqlInterpolate(ANSI(), sql, name = &quot;H&#39;); DROP TABLE--;&quot;)
-</div>
+<span class="comment"># This is safe because the single quote has been double escaped</span>
+<span class="functioncall"><a href='sqlInterpolate.html'>sqlInterpolate</a></span><span class="keyword">(</span><span class="functioncall"><a href='ANSI.html'>ANSI</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">sql</span><span class="keyword">,</span> <span class="argument">name</span> <span class="argument">=</span> <span class="string">"H'); DROP TABLE--;"</span><span class="keyword">)</span></div>
 <div class='output'>&lt;SQL&gt; SELECT * FROM X WHERE name = &#39;H&#39;&#39;); DROP TABLE--;&#39;
 </div></pre>
   </div>

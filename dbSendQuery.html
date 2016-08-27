@@ -53,7 +53,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>dbSendQuery(conn, statement, ...)</div></pre>
+    <pre><span class="functioncall"><a href='dbSendQuery.html'>dbSendQuery</a></span><span class="keyword">(</span><span class="symbol">conn</span><span class="keyword">,</span> <span class="symbol">statement</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -115,15 +115,13 @@ drivers' <code>dbSendQuery</code> documentation for details.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
+    <pre class="examples"><div class='input'><span class="symbol">con</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbConnect.html'>dbConnect</a></span><span class="keyword">(</span><span class="package">RSQLite</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">":memory:"</span><span class="keyword">)</span>
 
-dbWriteTable(con, &quot;mtcars&quot;, mtcars)
-</div>
+<span class="functioncall"><a href='dbReadTable.html'>dbWriteTable</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"mtcars"</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
-<div class='input'>rs &lt;- dbSendQuery(con, &quot;SELECT * FROM mtcars WHERE cyl = 4;&quot;)
-dbFetch(rs)
-</div>
+<div class='input'><span class="symbol">rs</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbSendQuery.html'>dbSendQuery</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"SELECT * FROM mtcars WHERE cyl = 4;"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='dbFetch.html'>dbFetch</a></span><span class="keyword">(</span><span class="symbol">rs</span><span class="keyword">)</span></div>
 <div class='output'>                mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
 Merc 240D      24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
@@ -137,13 +135,11 @@ Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
 Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
 Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 </div>
-<div class='input'>dbClearResult(rs)
-</div>
+<div class='input'><span class="functioncall"><a href='dbClearResult.html'>dbClearResult</a></span><span class="keyword">(</span><span class="symbol">rs</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div>
 <div class='input'>
-dbDisconnect(con)
-</div>
+<span class="functioncall"><a href='dbDisconnect.html'>dbDisconnect</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">)</span></div>
 <div class='output'>[1] TRUE
 </div></pre>
   </div>

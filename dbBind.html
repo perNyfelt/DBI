@@ -53,7 +53,7 @@
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>dbBind(res, params, ...)</div></pre>
+    <pre><span class="functioncall"><a href='dbBind.html'>dbBind</a></span><span class="keyword">(</span><span class="symbol">res</span><span class="keyword">,</span> <span class="symbol">params</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -107,20 +107,19 @@ to actual values, and is intended to be called on the result of
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>## Not run: 
-# con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
-# 
-# dbWriteTable(con, &quot;iris&quot;, iris)
-# iris_result &lt;- dbSendQuery(con, &quot;SELECT * FROM iris WHERE [Petal.Width] &gt; ?&quot;)
-# dbBind(iris_result, list(2.3))
-# dbFetch(iris_result)
-# dbBind(iris_result, list(3))
-# dbFetch(iris_result)
-# 
-# dbClearResult(iris_result)
-# dbDisconnect(con)
-# ## End(Not run)
-</div></pre>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: </span>
+<span class="comment"># con &lt;- dbConnect(RSQLite::SQLite(), ":memory:")</span>
+<span class="comment"># </span>
+<span class="comment"># dbWriteTable(con, "iris", iris)</span>
+<span class="comment"># iris_result &lt;- dbSendQuery(con, "SELECT * FROM iris WHERE [Petal.Width] &gt; ?")</span>
+<span class="comment"># dbBind(iris_result, list(2.3))</span>
+<span class="comment"># dbFetch(iris_result)</span>
+<span class="comment"># dbBind(iris_result, list(3))</span>
+<span class="comment"># dbFetch(iris_result)</span>
+<span class="comment"># </span>
+<span class="comment"># dbClearResult(iris_result)</span>
+<span class="comment"># dbDisconnect(con)</span>
+<span class="comment"># ## End(Not run)</span></div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
