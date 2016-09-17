@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>DBIspec. DBI 0.5</title>
+<title>DBIspec. DBI 0.5-1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.5</a>
+      <a class="brand" href="#">DBI 0.5-1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -134,6 +134,32 @@ and <code><a href='http://www.rdocumentation.org/packages/base/topics/difftime'>
 It also must accept lists of <code>raw</code> vectors
 and map them to the BLOB (binary large object) data type.
 The behavior for other object types is not specified.</p>
+  
+    </div>
+
+    <div class="Transactions">
+      <h2>Transactions</h2>
+
+      <p></p>
+  
+      <p><h3><code>dbBegin("DBIConnection")</code> and <code>dbCommit("DBIConnection")</code></h3>Transactions are available in DBI, but actual support may vary between backends.
+A transaction is initiated by a call to <code><a href='transactions.html'>dbBegin</a></code>
+and committed by a call to <code><a href='transactions.html'>dbCommit</a></code>.
+Both generics expect an object of class <code><a href='DBIConnection-class.html'>DBIConnection</a></code>
+and return <code>TRUE</code> (invisibly) upon success.The implementations are expected to raise an error in case of failure,
+but this is difficult to test in an automated way.
+In any way, both generics should throw an error with a closed connection.
+In addition, a call to <code><a href='transactions.html'>dbCommit</a></code> without
+a call to <code><a href='transactions.html'>dbBegin</a></code> should raise an error.
+Nested transactions are not supported by DBI,
+an attempt to call <code><a href='transactions.html'>dbBegin</a></code> twice
+should yield an error.Data written in a transaction must persist after the transaction is committed.
+For example, a table that is missing when the transaction is started
+but is created
+and populated during the transaction
+must exist and contain the data added there
+both during
+and after the transaction.The transaction isolation level is not specified by DBI.</p>
   
     </div>
       </div>

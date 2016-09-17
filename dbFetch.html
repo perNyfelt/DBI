@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dbFetch. DBI 0.5</title>
+<title>dbFetch. DBI 0.5-1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.5</a>
+      <a class="brand" href="#">DBI 0.5-1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -128,7 +128,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 <span class="comment"># Fetch in chunks</span>
 <span class="symbol">rs</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbSendQuery.html'>dbSendQuery</a></span><span class="keyword">(</span><span class="symbol">con</span><span class="keyword">,</span> <span class="string">"SELECT * FROM mtcars"</span><span class="keyword">)</span>
 <span class="keyword">while</span> <span class="keyword">(</span><span class="keyword">!</span><span class="functioncall"><a href='dbHasCompleted.html'>dbHasCompleted</a></span><span class="keyword">(</span><span class="symbol">rs</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">{</span>
-  <span class="symbol">chunk</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbFetch.html'>fetch</a></span><span class="keyword">(</span><span class="symbol">rs</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span>
+  <span class="symbol">chunk</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='dbFetch.html'>dbFetch</a></span><span class="keyword">(</span><span class="symbol">rs</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span>
   <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/print'>print</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span><span class="keyword">(</span><span class="symbol">chunk</span><span class="keyword">)</span><span class="keyword">)</span>
 <span class="keyword">}</span></div>
 <div class='output'>[1] 10
