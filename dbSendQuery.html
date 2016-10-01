@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dbSendQuery. DBI 0.5-10</title>
+<title>dbSendQuery. DBI 0.5-11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.5-10</a>
+      <a class="brand" href="#">DBI 0.5-11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -59,7 +59,7 @@
     <dl>
       <dt>conn</dt>
       <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as produced by
-<code><a href='dbConnect.html'>dbConnect</a></code>.</dd>
+<code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>statement</dt>
       <dd>a character vector of length 1 containing SQL.</dd>
       <dt>...</dt>
@@ -71,9 +71,9 @@
 
       <p><dl>
 An object that inherits from <code><a href='DBIResult-class.html'>DBIResult</a></code>.
-  The result set can be used with <code><a href='dbFetch.html'>dbFetch</a></code> to extract records.
-  Once you have finished using a result, make sure to disconnect it
-  with <code><a href='dbClearResult.html'>dbClearResult</a></code>.
+The result set can be used with <code><a href='dbFetch.html'>dbFetch()</a></code> to extract records.
+Once you have finished using a result, make sure to disconnect it
+with <code><a href='dbClearResult.html'>dbClearResult()</a></code>.
 </dl></p>
   
     </div>
@@ -83,10 +83,10 @@ An object that inherits from <code><a href='DBIResult-class.html'>DBIResult</a><
 
       <p>The function <code>dbSendQuery</code> only submits and synchronously executes the
 SQL query to the database engine.  It does <em>not</em> extract any
-records --- for that you need to use the function <code><a href='dbFetch.html'>dbFetch</a></code>, and
-then you must call <code><a href='dbClearResult.html'>dbClearResult</a></code> when you finish fetching the
+records --- for that you need to use the function <code><a href='dbFetch.html'>dbFetch()</a></code>, and
+then you must call <code><a href='dbClearResult.html'>dbClearResult()</a></code> when you finish fetching the
 records you need. For interactive use, you should almost always prefer
-<code><a href='dbGetQuery.html'>dbGetQuery</a></code>.</p>
+<code><a href='dbGetQuery.html'>dbGetQuery()</a></code>.</p>
   
     </div>
 
@@ -96,7 +96,7 @@ records you need. For interactive use, you should almost always prefer
       <p>This function is for <code>SELECT</code> queries only.  Some backends may
 support data manipulation queries through this function for compatibility
 reasons.  However, callers are strongly advised to use
-<code><a href='dbSendStatement.html'>dbSendStatement</a></code> for data manipulation statements.</p>
+<code><a href='dbSendStatement.html'>dbSendStatement()</a></code> for data manipulation statements.</p>
   
     </div>
 
@@ -152,7 +152,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
     </ul> -->
       
     <h2>See also</h2>
-      <p>For updates: <code><a href='dbSendStatement.html'>dbSendStatement</a></code> and <code><a href='dbExecute.html'>dbExecute</a></code>.</p>
+      <p>For updates: <code><a href='dbSendStatement.html'>dbSendStatement()</a></code> and <code><a href='dbExecute.html'>dbExecute()</a></code>.</p>
 
       <p>Other DBIConnection generics: <code><a href='DBIConnection-class.html'>DBIConnection-class</a></code>,
   <code><a href='dbDataType.html'>dbDataType</a></code>, <code><a href='dbDisconnect.html'>dbDisconnect</a></code>,

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sqlAppendTable. DBI 0.5-10</title>
+<title>sqlAppendTable. DBI 0.5-11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.5-10</a>
+      <a class="brand" href="#">DBI 0.5-11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -64,21 +64,21 @@
       <dd>A database connection.</dd>
       <dt>table</dt>
       <dd>Name of the table. Escaped with
-<code><a href='SQL.html'>dbQuoteIdentifier</a></code>.</dd>
+<code><a href='SQL.html'>dbQuoteIdentifier()</a></code>.</dd>
       <dt>values</dt>
       <dd>A data frame. Factors will be converted to character vectors.
-Character vectors will be escaped with <code><a href='SQL.html'>dbQuoteString</a></code>.</dd>
+Character vectors will be escaped with <code><a href='SQL.html'>dbQuoteString()</a></code>.</dd>
       <dt>row.names</dt>
       <dd>Either <code>TRUE</code>, <code>FALSE</code>, <code>NA</code> or a string.
 
-  If <code>TRUE</code>, always translate row names to a column called "row_names".
-  If <code>FALSE</code>, never translate row names. If <code>NA</code>, translate
-  rownames only if they're a character vector.
+If <code>TRUE</code>, always translate row names to a column called "row_names".
+If <code>FALSE</code>, never translate row names. If <code>NA</code>, translate
+rownames only if they're a character vector.
 
-  A string is equivalent to <code>TRUE</code>, but allows you to override the
-  default name.
+A string is equivalent to <code>TRUE</code>, but allows you to override the
+default name.
 
-  For backward compatibility, <code>NULL</code> is equivalent to <code>FALSE</code>.</dd>
+For backward compatibility, <code>NULL</code> is equivalent to <code>FALSE</code>.</dd>
       <dt>...</dt>
       <dd>Other arguments used by individual methods.</dd>
       <dt>prefix</dt>
@@ -90,7 +90,7 @@ Character vectors will be escaped with <code><a href='SQL.html'>dbQuoteString</a
 
       <p><code>sqlAppendTable</code> generates a single SQL string that inserts a
 data frame into an existing table. <code>sqlAppendTableTemplate</code> generates
-a template suitable for use with <code><a href='dbBind.html'>dbBind</a></code>.
+a template suitable for use with <code><a href='dbBind.html'>dbBind()</a></code>.
 These methods are mostly useful for backend implementers.</p>
   
     </div>

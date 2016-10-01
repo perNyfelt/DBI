@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>DBIspec. DBI 0.5-10</title>
+<title>DBIspec. DBI 0.5-11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.5-10</a>
+      <a class="brand" href="#">DBI 0.5-11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -112,28 +112,105 @@ an empty argument list is expected.
 Otherwise, an argument list where all arguments have default values
 is also accepted.</p>
   
-      <p><h3><code>dbDataType("DBIDriver", "ANY")</code></h3>The backend can override the <code><a href='dbDataType.html'>dbDataType</a></code> generic
+      <p><h3><code>dbDataType("DBIDriver", "ANY")</code></h3>The backend can override the <code><a href='dbDataType.html'>DBI::dbDataType()</a></code> generic
 for its driver class.
 This generic expects an arbitrary object as second argument
 and returns a corresponding SQL type
 as atomic
 character value
 with at least one character.
-As-is objects (i.e., wrapped by <code><a href='http://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></code>) must be
+As-is objects (i.e., wrapped by <code><a href='http://www.rdocumentation.org/packages/base/topics/AsIs'>base::I()</a></code>) must be
 supported and return the same results as their unwrapped counterparts.To query the values returned by the default implementation,
 run <code>example(dbDataType, package = "DBI")</code>.
 If the backend needs to override this generic,
 it must accept all basic R data types as its second argument, namely
-<code><a href='http://www.rdocumentation.org/packages/base/topics/logical'>logical</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/base/topics/integer'>integer</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/base/topics/character'>character</a></code>,
-dates (see <code><a href='http://www.rdocumentation.org/packages/base/topics/Dates'>Dates</a></code>),
-date-time (see <code><a href='http://www.rdocumentation.org/packages/base/topics/DateTimeClasses'>DateTimeClasses</a></code>),
-and <code><a href='http://www.rdocumentation.org/packages/base/topics/difftime'>difftime</a></code>.
+<code><a href='http://www.rdocumentation.org/packages/base/topics/logical'>base::logical()</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/base/topics/integer'>base::integer()</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/base/topics/numeric'>base::numeric()</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/base/topics/character'>base::character()</a></code>,
+dates (see <code><a href='http://www.rdocumentation.org/packages/base/topics/Dates'>base::Dates()</a></code>),
+date-time (see <code><a href='http://www.rdocumentation.org/packages/base/topics/DateTimeClasses'>base::DateTimeClasses()</a></code>),
+and <code><a href='http://www.rdocumentation.org/packages/base/topics/difftime'>base::difftime()</a></code>.
 It also must accept lists of <code>raw</code> vectors
 and map them to the BLOB (binary large object) data type.
 The behavior for other object types is not specified.</p>
+  
+    </div>
+
+    <div class="Parametrized queries and statements">
+      <h2>Parametrized queries and statements</h2>
+
+      <p></p>
+  
+      <p><span class = "pkg">DBI</span> supports parametrized (or prepared) queries and statements
+via the <code><a href='dbBind.html'>DBI::dbBind()</a></code> generic.
+Parametrized queries are different from normal queries
+in that they allow an arbitrary number of placeholders,
+which are later substituted by actual values.
+Parametrized queries (and statements) serve two purposes:
+<ul>
+<li> The same query can be executed more than once with different values.
+The DBMS may cache intermediate information for the query,
+such as the execution plan,
+and execute it faster.
+</li>
+<li> Separation of query syntax and parameters protects against SQL injection.
+</li>
+</ul></p>
+  
+      <p>The placeholder format is currently not specified by <span class = "pkg">DBI</span>;
+in the future, a uniform placeholder syntax may be supported.
+Consult the backend documentation for the supported formats.
+For automated testing, backend authors specify the placeholder syntax with
+the <code>placeholder_pattern</code> tweak.
+Known examples are:
+<ul>
+<li> <code>?</code> (positional matching in order of appearance) in <span class = "pkg">RMySQL</span> and <span class = "pkg">RSQLite</span>
+</li>
+<li> <code>$1</code> (positional matching by index) in <span class = "pkg">RPostgres</span> and <span class = "pkg">RSQLite</span>
+</li>
+<li> <code>:name</code> and <code>$name</code> (named matching) in <span class = "pkg">RSQLite</span>
+</li>
+</ul></p>
+  
+      <p><span class = "pkg">DBI</span> clients execute parametrized statements as follows:
+<ol>
+<li> Call <code><a href='dbSendQuery.html'>DBI::dbSendQuery()</a></code> or <code><a href='dbSendStatement.html'>DBI::dbSendStatement()</a></code> with a query or statement
+that contains placeholders,
+store the returned <code><a href='DBIResult-class.html'>DBIResult</a></code> object in a variable.
+Mixing placeholders (in particular, named and unnamed ones) is not
+recommended.
+</li>
+<li> Call <code><a href='dbBind.html'>dbBind()</a></code> on the <code>DBIResult</code> object with a list
+that specifies actual values for the placeholders.
+All elements in this list must have the same lengths and contain values
+supported by the backend; a <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame()</a></code> is internally stored as such
+a list.
+The list must be named or unnamed,
+depending on the kind of placeholders used.
+Named values are matched to named parameters, unnamed values
+are matched by position.
+</li>
+<li> Retrieve the data or the number of affected rows from the  <code>DBIResult</code> object.
+<ul>
+<li> For queries issued by <code>dbSendQuery()</code>,
+call <code><a href='dbFetch.html'>DBI::dbFetch()</a></code>.
+</li>
+<li> For statements issued by <code>dbSendStatements()</code>,
+call <code><a href='dbGetRowsAffected.html'>DBI::dbGetRowsAffected()</a></code>.
+(Execution begins immediately after the <code>dbBind()</code> call.
+Calls to <code>dbFetch()</code> are ignored.)
+</li>
+</ul></p>
+  
+      <p></li>
+<li> Repeat 2. and 3. as necessary.
+</li>
+<li> Close the result set via <code><a href='dbClearResult.html'>DBI::dbClearResult()</a></code>.
+</li>
+</ol></p>
+  
+      <p></p>
   
     </div>
 
@@ -143,23 +220,25 @@ The behavior for other object types is not specified.</p>
       <p></p>
   
       <p><h3><code>dbBegin("DBIConnection")</code> and <code>dbCommit("DBIConnection")</code></h3>Transactions are available in DBI, but actual support may vary between backends.
-A transaction is initiated by a call to <code><a href='transactions.html'>dbBegin</a></code>
-and committed by a call to <code><a href='transactions.html'>dbCommit</a></code>.
+A transaction is initiated by a call to <code><a href='transactions.html'>DBI::dbBegin()</a></code>
+and committed by a call to <code><a href='transactions.html'>DBI::dbCommit()</a></code>.
 Both generics expect an object of class <code><a href='DBIConnection-class.html'>DBIConnection</a></code>
 and return <code>TRUE</code> (invisibly) upon success.The implementations are expected to raise an error in case of failure,
 but this is difficult to test in an automated way.
 In any way, both generics should throw an error with a closed connection.
-In addition, a call to <code><a href='transactions.html'>dbCommit</a></code> without
-a call to <code><a href='transactions.html'>dbBegin</a></code> should raise an error.
+In addition, a call to <code><a href='transactions.html'>DBI::dbCommit()</a></code> without
+a call to <code><a href='transactions.html'>DBI::dbBegin()</a></code> should raise an error.
 Nested transactions are not supported by DBI,
-an attempt to call <code><a href='transactions.html'>dbBegin</a></code> twice
+an attempt to call <code><a href='transactions.html'>DBI::dbBegin()</a></code> twice
 should yield an error.Data written in a transaction must persist after the transaction is committed.
 For example, a table that is missing when the transaction is started
 but is created
 and populated during the transaction
 must exist and contain the data added there
 both during
-and after the transaction.The transaction isolation level is not specified by DBI.</p>
+and after the transaction.The behavior is not specified if other arguments are passed to these
+functions. In particular, <span class = "pkg">RSQLite</span> issues named transactions
+if the <code>name</code> argument is set.The transaction isolation level is not specified by DBI.</p>
   
     </div>
       </div>

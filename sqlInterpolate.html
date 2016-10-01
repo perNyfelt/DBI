@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sqlInterpolate. DBI 0.5-10</title>
+<title>sqlInterpolate. DBI 0.5-11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.5-10</a>
+      <a class="brand" href="#">DBI 0.5-11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -61,10 +61,10 @@
       <dd>A database connection.</dd>
       <dt>...</dt>
       <dd>Named values to interpolate into string. All strings
-will be first escaped with <code><a href='SQL.html'>dbQuoteString</a></code> prior
+will be first escaped with <code><a href='SQL.html'>dbQuoteString()</a></code> prior
 to interpolation to protect against SQL injection attacks.</dd>
       <dt>`_sql`</dt>
-      <dd>A SQL string containing containing variables to interpolate.
+      <dd>A SQL string containing variables to interpolate.
 Variables must start with a question mark and can be any valid R
 identifier, i.e. it must start with a letter or <code>.</code>, and be followed
 by a letter, digit, <code>.</code> or <code>_</code>.</dd>
@@ -83,7 +83,7 @@ by a letter, digit, <code>.</code> or <code>_</code>.</dd>
       <p></p>
   
       <p>If you are implementing a SQL backend with non-ANSI quoting rules, you'll
-need to implement a method for <code><a href='sqlParseVariables.html'>sqlParseVariables</a></code>. Failure to
+need to implement a method for <code><a href='sqlParseVariables.html'>sqlParseVariables()</a></code>. Failure to
 do so does not expose you to SQL injection attacks, but will (rarely) result
 in errors matching supplied and interpolated variables.</p>
   

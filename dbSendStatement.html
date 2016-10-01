@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dbSendStatement. DBI 0.5-10</title>
+<title>dbSendStatement. DBI 0.5-11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">DBI 0.5-10</a>
+      <a class="brand" href="#">DBI 0.5-11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -59,7 +59,7 @@
     <dl>
       <dt>conn</dt>
       <dd>A <code><a href='DBIConnection-class.html'>DBIConnection</a></code> object, as produced by
-<code><a href='dbConnect.html'>dbConnect</a></code>.</dd>
+<code><a href='dbConnect.html'>dbConnect()</a></code>.</dd>
       <dt>statement</dt>
       <dd>a character vector of length 1 containing SQL.</dd>
       <dt>...</dt>
@@ -71,8 +71,8 @@
 
       <p><dl>
 An object that inherits from <code><a href='DBIResult-class.html'>DBIResult</a></code>.
-  Once you have finished using a result, make sure to disconnect it
-  with <code><a href='dbClearResult.html'>dbClearResult</a></code>.
+Once you have finished using a result, make sure to disconnect it
+with <code><a href='dbClearResult.html'>dbClearResult()</a></code>.
 </dl></p>
   
     </div>
@@ -83,18 +83,18 @@ An object that inherits from <code><a href='DBIResult-class.html'>DBIResult</a><
       <p>The function <code>dbSendStatement</code> only submits and synchronously executes the
 SQL data manipulation statement (e.g., <code>UPDATE</code>, <code>DELETE</code>,
 <code>INSERT INTO</code>, <code>DROP TABLE</code>, ...) to the database engine.  To query
-the number of affected rows, call <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected</a></code> on the
-returned result object.  You must also call <code><a href='dbClearResult.html'>dbClearResult</a></code> after
+the number of affected rows, call <code><a href='dbGetRowsAffected.html'>dbGetRowsAffected()</a></code> on the
+returned result object.  You must also call <code><a href='dbClearResult.html'>dbClearResult()</a></code> after
 that. For interactive use, you should almost always prefer
-<code><a href='dbExecute.html'>dbExecute</a></code>.</p>
+<code><a href='dbExecute.html'>dbExecute()</a></code>.</p>
   
     </div>
 
     <div class="Details">
       <h2>Details</h2>
 
-      <p><code><a href='dbSendStatement.html'>dbSendStatement</a></code> comes with a default implementation that simply
-forwards to <code><a href='dbSendQuery.html'>dbSendQuery</a></code>, to support backends that only
+      <p><code><a href='dbSendStatement.html'>dbSendStatement()</a></code> comes with a default implementation that simply
+forwards to <code><a href='dbSendQuery.html'>dbSendQuery()</a></code>, to support backends that only
 implement the latter.</p>
   
     </div>
@@ -139,7 +139,7 @@ implement the latter.</p>
     </ul> -->
       
     <h2>See also</h2>
-      <p>For queries: <code><a href='dbSendQuery.html'>dbSendQuery</a></code> and <code><a href='dbGetQuery.html'>dbGetQuery</a></code>.</p>
+      <p>For queries: <code><a href='dbSendQuery.html'>dbSendQuery()</a></code> and <code><a href='dbGetQuery.html'>dbGetQuery()</a></code>.</p>
 
       <p>Other DBIConnection generics: <code><a href='DBIConnection-class.html'>DBIConnection-class</a></code>,
   <code><a href='dbDataType.html'>dbDataType</a></code>, <code><a href='dbDisconnect.html'>dbDisconnect</a></code>,
